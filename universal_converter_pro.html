@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Universal Converter Pro</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*{box-sizing:border-box}body{
+margin:0;font-family:Arial,sans-serif;color:#fff;
+background:linear-gradient(-45deg,#0f172a,#1e293b,#312e81,#0ea5e9);
+background-size:400% 400%;animation:bg 12s ease infinite;
+min-height:100vh}
+@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+.container{max-width:900px;margin:auto;padding:30px}
+.card{background:rgba(255,255,255,.12);backdrop-filter:blur(12px);
+padding:25px;border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+h1{text-align:center}
+.drop{
+border:2px dashed #fff;border-radius:16px;padding:30px;text-align:center;
+margin:20px 0;cursor:pointer}
+button,select{
+padding:12px 16px;border:none;border-radius:12px;margin:8px;cursor:pointer}
+.preview{max-width:100%;max-height:300px;border-radius:12px;margin-top:15px}
+.footer{text-align:center;margin-top:20px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>🚀 Universal Converter Pro</h1>
+<p style="text-align:center">Image Converter + Image to PDF</p>
+
+<div class="drop" onclick="fileInput.click()">
+Drop image here or tap to upload
+</div>
+
+<input type="file" id="fileInput" accept="image/*" hidden>
+
+<div style="text-align:center">
+<select id="format">
+<option value="image/png">PNG</option>
+<option value="image/jpeg">JPG</option>
+<option value="image/webp">WEBP</option>
+</select>
+<button onclick="convertImage()">Convert Image</button>
+<button onclick="imageToPdf()">Image → PDF</button>
+</div>
+
+<div style="text-align:center">
+<img id="preview" class="preview" style="display:none">
+</div>
+
+<div id="downloads" style="text-align:center"></div>
+</div>
+<div class="footer">AdSense-ready layout • GitHub Pages compatible</div>
+</div>
+
+<script>
+let selectedFile=null;
+const fileInput=document.getElementById('fileInput');
+
+fileInput.onchange=e=>{
+selectedFile=e.target.files[0];
+if(!selectedFile)return;
+const img=document.getElementById('preview');
+img.src=URL.createObjectURL(selectedFile);
+img.style.display='block';
+};
+
+function convertImage(){
+if(!selectedFile){alert("Upload an image first");return;}
+const img=new Image();
+img.onload=()=>{
+const canvas=document.createElement('canvas');
+canvas.width=img.width;
+canvas.height=img.height;
+canvas.getContext('2d').drawImage(img,0,0);
+const format=document.getElementById('format').value;
+canvas.toBlob(blob=>{
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='converted.'+format.split('/')[1];
+a.click();
+},format);
+};
+img.src=URL.createObjectURL(selectedFile);
+}
+
+async function imageToPdf(){
+if(!selectedFile){alert("Upload an image first");return;}
+const {jsPDF}=window.jspdf;
+const pdf=new jsPDF();
+const reader=new FileReader();
+reader.onload=function(e){
+const img=e.target.result;
+pdf.addImage(img,'JPEG',10,10,180,120);
+pdf.save('image.pdf');
+};
+reader.readAsDataURL(selectedFile);
+}
+</script>
+</body>
+</html>
