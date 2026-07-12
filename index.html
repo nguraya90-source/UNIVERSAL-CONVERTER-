@@ -71,19 +71,18 @@ img.style.display='block';
 };
 
 function convertImage(){
-if(!selectedFile){alert("Upload an image first");return;}
-const img=new Image();
-img.onload=()=>{
-const canvas=document.createElement('canvas');
-canvas.width=img.width;
-canvas.height=img.height;
-canvas.getContext('2d').drawImage(img,0,0);
-const format=document.getElementById('format').value;
-canvas.toBlob(blob=>{
-const a=document.createElement('a');
-a.href=URL.createObjectURL(blob);
-a.download='converted.'+format.split('/')[1];
+canvas.toBlob(blob => {
+const url = URL.createObjectURL(blob);
+
+const a = document.createElement("a");
+a.href = url;
+a.download = "converted." + format.split('/')[1];
+
+document.body.appendChild(a);
 a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+}, format);
 },format);
 };
 img.src=URL.createObjectURL(selectedFile);
