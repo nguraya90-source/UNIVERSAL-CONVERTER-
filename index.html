@@ -52,7 +52,6 @@ Drop image here or tap to upload
 </div>
 
 <input type="file" id="fileInput" accept="image/*" hidden>
-
 <div style="text-align:center">
 <select id="format">
 <option value="image/png">PNG</option>
@@ -61,6 +60,10 @@ Drop image here or tap to upload
 </select>
 <button onclick="convertImage()">Convert Image</button>
 <button onclick="imageToPdf()">Image → PDF</button>
+<button onclick="resizeImage()">Resize 50%</button>
+<button onclick="rotateImage()">Rotate 90°</button>
+<button onclick="grayscaleImage()">Grayscale</button>
+<button onclick="flipImage()">Flip</button>
 </div>
 
 <div style="text-align:center">
