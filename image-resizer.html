@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Resizer - Universal Converter Pro</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:15px;
+}
+
+input,button{
+padding:12px;
+margin:10px;
+border:none;
+border-radius:10px;
+}
+
+button{
+cursor:pointer;
+background:#38bdf8;
+color:white;
+}
+
+img{
+max-width:100%;
+margin-top:20px;
+border-radius:10px;
+}
+
+a{
+color:#38bdf8;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>📏 Image Resizer</h1>
+
+<p>Upload an image and resize it.</p>
+
+<input type="file" id="fileInput" accept="image/*">
+
+<br>
+
+<input type="number" id="width" placeholder="Width (px)">
+<input type="number" id="height" placeholder="Height (px)">
+
+<br>
+
+<button onclick="resizeImage()">Resize Image</button>
+
+<div id="preview"></div>
+
+<div id="download"></div>
+
+<br>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</div>
+
+<script>
+
+function resizeImage(){
+
+const file=document.getElementById("fileInput").files[0];
+
+if(!file){
+alert("Please upload an image.");
+return;
+}
+
+const width=parseInt(document.getElementById("width").value);
+const height=parseInt(document.getElementById("height").value);
+
+if(!width || !height){
+alert("Enter width and height.");
+return;
+}
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const img=new Image();
+
+img.onload=function(){
+
+const canvas=document.createElement("canvas");
+canvas.width=width;
+canvas.height=height;
+
+const ctx=canvas.getContext("2d");
+ctx.drawImage(img,0,0,width,height);
+
+const resizedURL=canvas.toDataURL("image/png");
+
+document.getElementById("preview").innerHTML=
+'<h3>Resized Preview</h3><img src="'+resizedURL+'">';
+
+document.getElementById("download").innerHTML=
+'<br><a href="'+resizedURL+'" download="resized-image.png"><button>Download Resized Image</button></a>';
+
+};
+
+img.src=e.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+</script>
+
+</body>
+</html>
