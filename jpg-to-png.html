@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPG to PNG Converter</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:15px;
+}
+
+button,input{
+padding:12px;
+margin:10px;
+border:none;
+border-radius:10px;
+}
+
+button{
+cursor:pointer;
+background:#38bdf8;
+color:white;
+}
+
+img{
+max-width:100%;
+margin-top:20px;
+border-radius:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🖼️ JPG to PNG Converter</h1>
+
+<input type="file" id="fileInput" accept=".jpg,.jpeg,image/jpeg">
+
+<br>
+
+<button onclick="convertToPNG()">Convert to PNG</button>
+
+<div id="preview"></div>
+<div id="download"></div>
+
+</div>
+
+<script>
+function convertToPNG(){
+
+const file=document.getElementById("fileInput").files[0];
+
+if(!file){
+alert("Please select a JPG image");
+return;
+}
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const img=new Image();
+
+img.onload=function(){
+
+const canvas=document.createElement("canvas");
+canvas.width=img.width;
+canvas.height=img.height;
+
+const ctx=canvas.getContext("2d");
+ctx.drawImage(img,0,0);
+
+canvas.toBlob(function(blob){
+
+const url=URL.createObjectURL(blob);
+
+document.getElementById("preview").innerHTML=
+'<h3>Preview</h3><img src="'+url+'">';
+
+document.getElementById("download").innerHTML=
+'<a href="'+url+'" download="converted.png"><button>Download PNG</button></a>';
+
+},'image/png');
+
+};
+
+img.src=e.target.result;
+
+};
+
+reader.readAsDataURL(file);
+}
+</script>
+
+</body>
+</html>
