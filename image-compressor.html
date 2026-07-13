@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Compressor - Universal Converter Pro</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:15px;
+}
+
+input,button{
+padding:12px;
+margin:10px;
+border:none;
+border-radius:10px;
+}
+
+button{
+cursor:pointer;
+background:#38bdf8;
+color:white;
+}
+
+img{
+max-width:100%;
+margin-top:20px;
+border-radius:10px;
+}
+
+a{
+color:#38bdf8;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🗜️ Image Compressor</h1>
+
+<p>Upload an image and reduce its file size.</p>
+
+<input type="file" id="fileInput" accept="image/*">
+
+<br>
+
+<label>Compression Quality:</label>
+<input type="range" id="quality" min="10" max="100" value="70">
+
+<span id="qualityValue">70%</span>
+
+<br>
+
+<button onclick="compressImage()">Compress Image</button>
+
+<div id="preview"></div>
+
+<div id="download"></div>
+
+<br>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</div>
+
+<script>
+const slider=document.getElementById("quality");
+const qualityValue=document.getElementById("qualityValue");
+
+slider.oninput=function(){
+qualityValue.textContent=this.value+"%";
+};
+
+function compressImage(){
+
+const file=document.getElementById("fileInput").files[0];
+
+if(!file){
+alert("Please upload an image.");
+return;
+}
+
+const quality=slider.value/100;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const img=new Image();
+
+img.onload=function(){
+
+const canvas=document.createElement("canvas");
+canvas.width=img.width;
+canvas.height=img.height;
+
+const ctx=canvas.getContext("2d");
+ctx.drawImage(img,0,0);
+
+canvas.toBlob(function(blob){
+
+const compressedURL=URL.createObjectURL(blob);
+
+document.getElementById("preview").innerHTML=
+'<h3>Compressed Preview</h3><img src="'+compressedURL+'">';
+
+document.getElementById("download").innerHTML=
+'<br><a href="'+compressedURL+'" download="compressed.jpg"><button>Download Compressed Image</button></a>';
+
+},'image/jpeg',quality);
+
+};
+
+img.src=e.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+}
+</script>
+
+</body>
+</html>
