@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Percentage Calculator</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:white;text-align:center;padding:30px}
+input,button{padding:10px;margin:10px}
+</style>
+</head>
+<body>
+
+<h1>📊 Percentage Calculator</h1>
+
+<input type="number" id="num1" placeholder="Number">
+<input type="number" id="num2" placeholder="Percentage">
+
+<button onclick="calc()">Calculate</button>
+
+<h2 id="result"></h2>
+
+<script>
+function calc(){
+let n=document.getElementById("num1").value;
+let p=document.getElementById("num2").value;
+
+let result=(n*p)/100;
+
+document.getElementById("result").innerHTML=
+p+"% of "+n+" = "+result;
+}
+</script>
+
+</body>
+</html>
