@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator - Universal Converter Pro</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:15px;
+}
+
+input{
+width:90%;
+padding:12px;
+margin:10px;
+border:none;
+border-radius:10px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+img{
+margin-top:20px;
+max-width:250px;
+}
+
+a{
+color:#38bdf8;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>📱 QR Code Generator</h1>
+
+<input type="text" id="qrText" placeholder="Enter URL or text">
+
+<br>
+
+<button onclick="generateQR()">Generate QR Code</button>
+
+<div id="result"></div>
+
+<br>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</div>
+
+<script>
+function generateQR(){
+
+const text=document.getElementById("qrText").value;
+
+if(!text){
+alert("Enter text or URL");
+return;
+}
+
+document.getElementById("result").innerHTML=
+'<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data='
++ encodeURIComponent(text) +
+'" alt="QR Code">';
+}
+</script>
+
+</body>
+</html>
