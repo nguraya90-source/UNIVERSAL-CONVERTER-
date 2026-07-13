@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF to JPG Converter</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<style>
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+button,input{
+padding:12px;
+margin:10px;
+}
+
+img{
+max-width:100%;
+margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h1>🖼️ PDF to JPG Converter</h1>
+
+<input type="file" id="pdfInput" accept="application/pdf">
+
+<br>
+
+<button onclick="convertPDF()">Convert PDF</button>
+
+<div id="result"></div>
+
+<script>
+
+async function convertPDF(){
+
+const file=document.getElementById("pdfInput").files[0];
+
+if(!file){
+alert("Select a PDF file");
+return;
+}
+
+const pdfData=await file.arrayBuffer();
+
+const pdf=await pdfjsLib.getDocument({
+data:pdfData
+}).promise;
+
+const page=await pdf.getPage(1);
+
+const viewport=page.getViewport({
+scale:2
+});
+
+const canvas=document.createElement("canvas");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=viewport.width;
+canvas.height=viewport.height;
+
+await page.render({
+canvasContext:ctx,
+viewport:viewport
+}).promise;
+
+const imageURL=canvas.toDataURL("image/jpeg");
+
+document.getElementById("result").innerHTML=
+'<img src="'+imageURL+'"><br><a href="'+imageURL+'" download="page1.jpg"><button>Download JPG</button></a>';
+
+}
+</script>
+
+</body>
+</html>
