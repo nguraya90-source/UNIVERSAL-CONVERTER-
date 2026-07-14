@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Online JPG to PNG Converter - Convert Images Instantly</title>
+    <title>Convert JPG to PDF Online - Free & Secure Image Converter</title>
+    <!-- External dependency for compiling PDF documents completely inside the browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
+            --primary: #dc2626;
+            --primary-hover: #b91c1c;
             --background: #f8fafc;
             --card-bg: #ffffff;
             --text-main: #0f172a;
@@ -29,7 +31,7 @@
 
         .container {
             width: 100%;
-            max-width: 650px;
+            max-width: 700px;
             background: var(--card-bg);
             padding: 30px;
             border-radius: 16px;
@@ -62,7 +64,7 @@
 
         .drop-zone:hover, .drop-zone.drag-over {
             border-color: var(--primary);
-            background-color: #eeecfd;
+            background-color: #fef2f2;
         }
 
         .drop-zone p {
@@ -78,57 +80,108 @@
         .workspace {
             display: none;
             margin-top: 25px;
-            text-align: center;
         }
 
-        .preview-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            background: #fff;
+        .config-panel {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 10px;
             margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            font-size: 14px;
         }
 
-        .img-container {
-            height: 220px;
+        .config-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .config-group label {
+            font-weight: 600;
+        }
+
+        .config-group select, .config-group input {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .preview-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+            max-height: 320px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        .preview-row {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background-color: #f1f5f9;
+            justify-content: space-between;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 10px 15px;
             border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 15px;
         }
 
-        .img-container img {
-            max-width: 100%;
-            max-height: 100%;
+        .item-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .thumb {
+            width: 45px;
+            height: 45px;
             object-fit: contain;
+            background: #f1f5f9;
+            border-radius: 4px;
+            border: 1px solid var(--border);
         }
 
-        .file-info {
+        .name-lbl {
             font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 5px;
+            font-weight: 500;
+            max-width: 280px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        .badge {
-            background-color: #e0e7ff;
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 12px;
+        .size-lbl {
             font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
             font-weight: 600;
-            display: inline-block;
+            font-size: 14px;
+            padding: 5px 10px;
+        }
+
+        .delete-btn:hover {
+            text-decoration: underline;
         }
 
         .btn-group {
             display: flex;
-            gap: 12px;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 15px;
         }
 
-        button {
+        button.main-action {
             background-color: var(--primary);
             color: white;
             border: none;
@@ -137,16 +190,22 @@
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s;
         }
 
-        button:hover {
+        button.main-action:hover {
             background-color: var(--primary-hover);
         }
 
         button.secondary {
             background-color: #cbd5e1;
             color: var(--text-main);
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
         }
 
         button.secondary:hover {
@@ -157,29 +216,38 @@
 <body>
 
 <div class="container">
-    <h1>JPG to PNG Converter</h1>
-    <p class="subtitle">Convert your JPG/JPEG images into high-quality, transparent-ready PNG files.</p>
+    <h1>JPG to PDF Converter</h1>
+    <p class="subtitle">Convert your standard JPG images into a clean, single PDF document locally.</p>
 
     <div class="drop-zone" id="drop-zone">
         <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: var(--primary); margin: 0 auto;">
-            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
-        <p>Drag & drop your JPG image here, or <strong>browse files</strong></p>
-        <input type="file" id="file-input" accept="image/jpeg, image/jpg">
+        <p>Drag & drop JPG images here, or <strong>click to browse</strong></p>
+        <input type="file" id="file-input" accept="image/jpeg, image/jpg" multiple>
     </div>
 
     <div class="workspace" id="workspace">
-        <div class="preview-card">
-            <div class="img-container">
-                <img id="image-preview" alt="Uploaded Preview">
+        <div class="config-panel">
+            <div class="config-group">
+                <label for="layout-mode">Page Orientation</label>
+                <select id="layout-mode">
+                    <option value="auto">Auto (Match Image Layout)</option>
+                    <option value="portrait">Forced Portrait</option>
+                    <option value="landscape">Forced Landscape</option>
+                </select>
             </div>
-            <div class="file-info" id="file-details">File Name.jpg</div>
-            <span class="badge">Ready to Convert to PNG</span>
+            <div class="config-group">
+                <label for="doc-title">Document Name</label>
+                <input type="text" id="doc-title" value="compiled_images">
+            </div>
         </div>
 
+        <div class="preview-list" id="preview-list"></div>
+
         <div class="btn-group">
-            <button class="secondary" onclick="resetConverter()">Choose Another</button>
-            <button id="convert-download-btn">Convert & Download PNG</button>
+            <button class="secondary" onclick="resetPage()">Clear All</button>
+            <button class="main-action" id="compile-btn">Download Compile PDF</button>
         </div>
     </div>
 </div>
@@ -188,71 +256,117 @@
     const dropZone = document.getElementById('drop-zone');
     const fileInput = document.getElementById('file-input');
     const workspace = document.getElementById('workspace');
-    const imagePreview = document.getElementById('image-preview');
-    const fileDetails = document.getElementById('file-details');
-    const downloadBtn = document.getElementById('convert-download-btn');
+    const previewList = document.getElementById('preview-list');
+    const layoutMode = document.getElementById('layout-mode');
+    const docTitle = document.getElementById('doc-title');
+    const compileBtn = document.getElementById('compile-btn');
 
-    let loadedImg = new Image();
-    let originalFileName = '';
+    let imageList = [];
 
     dropZone.addEventListener('click', () => fileInput.click());
-    
     dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
     dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
     dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
         dropZone.classList.remove('drag-over');
-        if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+        if (e.dataTransfer.files.length > 0) processFiles(e.dataTransfer.files);
     });
 
     fileInput.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) handleFile(e.target.files[0]);
+        if (e.target.files.length > 0) processFiles(e.target.files);
     });
 
-    function handleFile(file) {
-        if (!file.type.includes('jpeg') && !file.type.includes('jpg')) {
-            alert('Please select a valid JPG or JPEG image file.');
-            return;
-        }
-
-        originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
-        fileDetails.innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            loadedImg.src = e.target.result;
-            imagePreview.src = e.target.result;
+    function processFiles(files) {
+        const promises = Array.from(files).map(file => {
+            if (!file.type.includes('jpeg') && !file.type.includes('jpg')) return Promise.resolve(null);
             
-            loadedImg.onload = () => {
-                dropZone.style.display = 'none';
-                workspace.style.display = 'block';
-            };
-        };
-        reader.readAsDataURL(file);
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const tempImg = new Image();
+                    tempImg.src = event.target.result;
+                    tempImg.onload = () => {
+                        resolve({
+                            raw: event.target.result,
+                            name: file.name,
+                            size: (file.size / 1024).toFixed(1) + ' KB',
+                            w: tempImg.naturalWidth,
+                            h: tempImg.naturalHeight
+                        });
+                    };
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        Promise.all(promises).then(results => {
+            const clearData = results.filter(item => item !== null);
+            imageList = [...imageList, ...clearData];
+            if (imageList.length > 0) {
+                updateUI();
+            }
+        });
     }
 
-    downloadBtn.addEventListener('click', () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = loadedImg.naturalWidth;
-        canvas.height = loadedImg.naturalHeight;
-        
-        ctx.drawImage(loadedImg, 0, 0);
+    function updateUI() {
+        previewList.innerHTML = '';
+        imageList.forEach((img, idx) => {
+            const row = document.createElement('div');
+            row.className = 'preview-row';
+            row.innerHTML = `
+                <div class="item-details">
+                    <img src="${img.raw}" class="thumb">
+                    <div>
+                        <div class="name-lbl">${img.name}</div>
+                        <div class="size-lbl">${img.size} (${img.w}x${img.h}px)</div>
+                    </div>
+                </div>
+                <button class="delete-btn" onclick="removeItem(${idx})">Remove</button>
+            `;
+            previewList.appendChild(row);
+        });
 
-        // Convert canvas data directly into a clean, standard PNG blob
-        canvas.toBlob((blob) => {
-            if (!blob) return;
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${originalFileName}.png`;
-            a.click();
-            setTimeout(() => URL.revokeObjectURL(url), 100);
-        }, 'image/png');
+        dropZone.style.display = 'none';
+        workspace.style.display = 'block';
+    }
+
+    window.removeItem = function(idx) {
+        imageList.splice(idx, 1);
+        if (imageList.length === 0) {
+            resetPage();
+        } else {
+            updateUI();
+        }
+    };
+
+    compileBtn.addEventListener('click', () => {
+        if (imageList.length === 0) return;
+        
+        const { jsPDF } = window.jspdf;
+        let pdfDoc = null;
+        
+        imageList.forEach((img, idx) => {
+            let orient = img.w > img.h ? 'l' : 'p';
+            if (layoutMode.value !== 'auto') {
+                orient = layoutMode.value === 'portrait' ? 'p' : 'l';
+            }
+
+            // Target baseline coordinates initialization mapping pixels cleanly
+            if (idx === 0) {
+                pdfDoc = new jsPDF({ orientation: orient, unit: 'px', format: [img.w, img.h] });
+            } else {
+                pdfDoc.addPage([img.w, img.h], orient);
+            }
+            
+            pdfDoc.addImage(img.raw, 'JPEG', 0, 0, img.w, img.h);
+        });
+
+        let savedName = docTitle.value.trim().replace(/[^a-z0-9_-]/gi, '_') || 'document';
+        pdfDoc.save(`${savedName}.pdf`);
     });
 
-    function resetConverter() {
+    function resetPage() {
+        imageList = [];
         fileInput.value = '';
         dropZone.style.display = 'block';
         workspace.style.display = 'none';
