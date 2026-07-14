@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google AdSense - UNTOUCHED -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9942315934378002"
+crossorigin="anonymous"></script>
+<!-- Google Site Verification - UNTOUCHED -->
+<meta name="google-site-verification" content="7c4V7dZFz1EHSVGKVypKVfYRtf8xz4GnHdVEGGVo3yk" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Universal Converter Pro</title>
+
+<!-- Luxury Typography Imports -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<!-- Third-Party Execution Engines -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+/* Dynamic Luxury Animations */
+@keyframes luxuryEntrance {
+    from { opacity: 0; transform: translateY(25px); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45); border-color: rgba(212, 175, 55, 0.8); }
+    70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); border-color: rgba(212, 175, 55, 0.35); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); border-color: rgba(212, 175, 55, 0.15); }
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #f4f4f5;
+    background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%);
+    min-height: 100vh;
+    letter-spacing: 0.5px;
+    line-height: 1.7;
+    animation: luxuryEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: #d4af37;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 40px 20px;
+}
+.card {
+    background: rgba(22, 22, 25, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 45px 35px;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+    margin-bottom: 40px;
+}
+h1.main-title {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 5px;
+    background: linear-gradient(135deg, #fff 40%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+p.subtitle {
+    text-align: center;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    color: #a1a1aa;
+    margin-bottom: 0px;
+}
+.drop {
+    border: 1px dashed rgba(212, 175, 55, 0.35);
+    border-radius: 8px;
+    padding: 55px 20px;
+    text-align: center;
+    margin: 20px 0 30px 0;
+    cursor: pointer;
+    color: #c5a880;
+    background: rgba(212, 175, 55, 0.01);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+.drop:hover {
+    background: rgba(212, 175, 55, 0.04);
+    border-color: #d4af37;
+    color: #fff;
+    box-shadow: inset 0 0 25px rgba(212, 175, 55, 0.05);
+}
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
+    margin: 40px 0;
+}
+button, .action-btn {
+    background: linear-gradient(135deg, #c5a880 0%, #a88960 100%);
+    color: #0a0a0b;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    margin: 8px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block;
+    text-decoration: none;
+}
+button:hover, .action-btn:hover {
+    background: linear-gradient(135deg, #e6d5b8 0%, #c5a880 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(168, 137, 96, 0.45);
+}
+button:disabled {
+    background: #27272a !important;
+    color: #71717a !important;
+    cursor: not-allowed;
+    animation: none;
+    transform: none !important;
+    box-shadow: none !important;
+}
+select, input[type="text"], input[type="number"], input[type="date"], input[type="password"], textarea {
+    padding: 13px 24px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: #141416;
+    color: #f4f4f5;
+    border-radius: 6px;
+    margin: 8px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    transition: all 0.3s;
+}
+select:focus, input:focus, textarea:focus {
+    border-color: #d4af37;
+}
+.preview {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 8px;
+    margin-top: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    transition: all 0.5s ease;
+}
+
+/* Premium Tools Grid Styling */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 30px 0 45px 0;
+}
+.tools-grid button {
+    background: rgba(22, 22, 25, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 8px;
+    padding: 18px 15px;
+    color: #a1a1aa;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    margin: 0;
+    letter-spacing: 0.5px;
+    animation: none;
+}
+.tools-grid button:hover {
+    color: #d4af37;
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+header nav button {
+    background: none;
+    border: none;
+    margin: 0 15px;
+    color: #a1a1aa;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.3s;
+    cursor: pointer;
+    animation: none;
+    padding: 0;
+}
+header nav button:hover {
+    color: #d4af37;
+    background: none;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Single-Page Layout Engine States */
+.tool-panel {
+    display: block;
+    scroll-margin-top: 40px;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.pulse-highlight {
+    animation: pulseGlow 1.5s ease-out !important;
+}
+
+/* Specialized Tool UI Elements */
+.progress-box {
+    background: #141416;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 6px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+    display: none;
+}
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #a88960, #d4af37);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+.progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+}
+.gallery-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+    background: #141416;
+    padding: 15px;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.gallery-item {
+    background: #1b1b1d;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    background: #000;
+    border-radius: 4px;
+}
+.flex-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+footer section {
+    margin-bottom: 45px;
+    text-align: left;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+    padding-bottom: 30px;
+}
+footer section p {
+    color: #a1a1aa;
+    font-size: 14px;
+}
+footer ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+footer ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: #d4d4d8;
+    font-size: 14px;
+}
+footer ul li::before {
+    content: "•";
+    color: #d4af37;
+    position: absolute;
+    left: 0;
+}
+.footer-nav-links a {
+    color: #c5a880;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 13px;
+    margin: 0 10px;
+}
+.footer-nav-links a:hover {
+    color: #fff;
+}
+.footer-text {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 11px;
+    color: #52525b;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+</style>
+</head>
+<body>
+
+<!-- 1. HEADER (With Added ID and Transition Styles for Scroll Auto-Hide) -->
+<header id="dynamicLuxuryHeader" style="position:sticky; top:0; z-index:100; padding:20px 20px; text-align:center; background:rgba(15, 15, 17, 0.85); backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); border-bottom: 1px solid rgba(212, 175, 55, 0.15); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);">
+    <h1 style="margin:0; font-size: 1.7rem;" class="main-title">UNIVERSAL CONVERTER PRO</h1>
+    <p style="margin: 5px 0 0 0;" class="subtitle">Fast • Free • Secure File Conversion</p>
+
+<!-- 2. NAVIGATION MENU -->
+    <nav style="margin-top:15px;">
+        <button onclick="switchPanel('panel-home')">Home</button>
+        <button onclick="switchPanel('panel-video-audio')">Video to Audio</button>
+        <button onclick="switchPanel('panel-compressor')">Compressor</button>
+        <button onclick="switchPanel('panel-resizer')">Resizer</button>
+        <button onclick="switchPanel('panel-qr')">QR Tool</button>
+        <button onclick="switchPanel('panel-word')">Word Counter</button>
+    </nav>
+</header>
+
+<div class="container">
+
+    <!-- 3. ALL TOOLS GRID -->
+    <h2 style="text-align:center; font-size: 1.4rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">🛠️ Premium Utilities Grid</h2>
+    <div class="tools-grid">
+        <button onclick="switchPanel('panel-home')">🖼️ Base Conversion Engine</button>
+        <button onclick="switchPanel('panel-video-audio')">🎥 Video to Audio</button>
+        <button onclick="switchPanel('panel-compressor')">🗜️ Image Compressor</button>
+        <button onclick="switchPanel('panel-resizer')">📏 Image Resizer</button>
+        <button onclick="switchPanel('panel-jpg-png')">🖼️ JPG to PNG Suite</button>
+        <button onclick="switchPanel('panel-png-jpg')">🖼️ PNG to JPG Suite</button>
+        <button onclick="switchPanel('panel-img-pdf')">📄 Image to PDF Engine</button>
+        <button onclick="switchPanel('panel-pdf-jpg')">🖼️ PDF to JPG Engine</button>
+        <button onclick="switchPanel('panel-qr')">📱 Luxury QR Generator</button>
+        <button onclick="switchPanel('panel-password')">🔐 Secure Password</button>
+        <button onclick="switchPanel('panel-word')">📝 Word Counter</button>
+        <button onclick="switchPanel('panel-age')">🎂 Age Calculator</button>
+    </div>
+
+    <!-- MAIN CONVERSION WORKSPACE CONTAINER (ALL ACTIVE HOME PANELS) -->
+    <div>
+        
+        <!-- MODULE: BASE FILE ENGINE (HOME) -->
+        <div id="panel-home" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">File Processing Engine</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Local Sandbox Environment</p>
+            <div class="drop" onclick="document.getElementById('fileInput').click()">Drop image here or browse files</div>
+            <input type="file" id="fileInput" accept="image/*" hidden onchange="handleBaseFile(this.files[0])">
+            <div style="text-align:center">
+                <select id="format">
+                    <option value="image/png">PNG Format</option>
+                    <option value="image/jpeg">JPG Format</option>
+                    <option value="image/webp">WEBP Format</option>
+                </select>
+                <button id="convertBtn" onclick="convertBaseImage()">Convert Image</button>
+                <button id="pdfBtn" onclick="baseImageToPdf()">Image → PDF</button>
+            </div>
+            <div style="text-align:center"><img id="preview" class="preview" style="display:none"></div>
+        </div>
+
+        <!-- MODULE: VIDEO TO AUDIO EXTRACTOR -->
+        <div id="panel-video-audio" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Video to Audio Extractor</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Lossless Client-Side Extraction</p>
+            <div class="drop" onclick="document.getElementById('videoAudioInput').click()">Upload or Drag Video Clip (MP4, WebM, MOV)</div>
+            <input type="file" id="videoAudioInput" accept="video/*" hidden onchange="extractAudioFromVideo(this.files[0])">
+            <div class="progress-box" id="vidProgressBox"><div class="progress-bar" id="vidProgressBar"></div><div class="progress-text" id="vidProgressText">0%</div></div>
+            <div id="videoAudioResult" style="text-align:center; display:none;">
+                <p id="vidInfoText" style="font-size:13px; color:#a1a1aa;"></p>
+                <button id="vidDownloadBtn">Download Sound Track (WAV)</button>
+            </div>
+        </div>
+
+        <!-- MODULE: IMAGE COMPRESSOR -->
+        <div id="panel-compressor" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Image Compressor</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Payload Optimization Control</p>
+            <div class="drop" onclick="document.getElementById('compInput').click()">Upload Image for Compression</div>
+            <input type="file" id="compInput" accept="image/jpeg, image/png" hidden onchange="processCompression(this.files[0])">
+            <div class="flex-options">
+                <label>Target Quality Level:</label>
+                <select id="compQuality">
+                    <option value="0.4">High Compression (Small File)</option>
+                    <option value="0.7" selected>Balanced Mode (Recommended)</option>
+                    <option value="0.9">Maximum Quality Retention</option>
+                </select>
+                <button onclick="triggerCompression()">Compress Asset</button>
+            </div>
+            <div id="compResult" style="text-align:center; display:none; margin-top:15px;"></div>
+        </div>
+
+        <!-- MODULE: IMAGE RESIZER -->
+        <div id="panel-resizer" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Image Resizer</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Precision Geometry Adjustment</p>
+            <div class="drop" onclick="document.getElementById('resizeInput').click()">Upload Image to Resize</div>
+            <input type="file" id="resizeInput" accept="image/*" hidden onchange="loadResizeImage(this.files[0])">
+            <div class="flex-options">
+                <input type="number" id="resizeWidth" placeholder="Width (px)" style="width:140px;">
+                <input type="number" id="resizeHeight" placeholder="Height (px)" style="width:140px;">
+                <button onclick="executeResize()">Apply Dimensions</button>
+            </div>
+            <div id="resizeResult" style="text-align:center;"></div>
+        </div>
+
+        <!-- MODULE: JPG TO PNG SUITE -->
+        <div id="panel-jpg-png" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">JPG to PNG Converter</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Alpha-Channel Transparency Migration</p>
+            <div class="drop" onclick="document.getElementById('jpgInput').click()">Upload JPG Image</div>
+            <input type="file" id="jpgInput" accept="image/jpeg, image/jpg" hidden onchange="directConvert(this.files[0], 'image/png', 'converted.png')">
+            <div id="jpgPngResult" style="text-align:center;"></div>
+        </div>
+
+        <!-- MODULE: PNG TO JPG SUITE -->
+        <div id="panel-png-jpg" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">PNG to JPG Converter</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Uncompressed Array Flattening</p>
+            <div class="drop" onclick="document.getElementById('pngInput').click()">Upload PNG Image</div>
+            <input type="file" id="pngInput" accept="image/png" hidden onchange="directConvert(this.files[0], 'image/jpeg', 'converted.jpg')">
+            <div id="pngJpgResult" style="text-align:center;"></div>
+        </div>
+
+        <!-- MODULE: IMAGE TO PDF ENGINE -->
+        <div id="panel-img-pdf" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Image to PDF Engine</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Layout Structuring Engine</p>
+            <div class="drop" onclick="document.getElementById('imgPdfInput').click()">Select Graphics File for PDF Compilation</div>
+            <input type="file" id="imgPdfInput" accept="image/*" hidden onchange="compileDirectPdf(this.files[0])">
+        </div>
+
+        <!-- MODULE: PDF TO JPG ENGINE -->
+        <div id="panel-pdf-jpg" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">PDF to JPG Engine</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Vector to Raster Extraction</p>
+            <div class="drop" onclick="document.getElementById('pdfJpgInput').click()">Upload Target PDF Document</div>
+            <input type="file" id="pdfJpgInput" accept="application/pdf" hidden onchange="processPdfToJpg(this.files[0])">
+            <div id="pdfStatus" style="text-align:center; display:none; color:#d4af37;">Parsing PDF Pages...</div>
+            <div class="gallery-box" id="pdfGallery" style="display:none;"></div>
+        </div>
+
+        <!-- MODULE: LUXURY QR GENERATOR -->
+        <div id="panel-qr" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Luxury QR Matrix Generator</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Custom Interactive Target Compilation</p>
+            <div style="text-align:center; margin-bottom:15px;">
+                <input type="text" id="qrText" value="https://example.com" style="width:80%; max-width:400px;" placeholder="Enter link text string">
+            </div>
+            <div class="flex-options">
+                <label>Matrix Foreground:</label><input type="color" id="qrFg" value="#000000">
+                <label>Background:</label><input type="color" id="qrBg" value="#ffffff">
+                <button onclick="generateQrCode()">Compile QR Code</button>
+            </div>
+            <div style="text-align:center; margin:20px 0;"><div id="qrOutput" style="display:inline-block; padding:10px; background:#fff; border-radius:6px;"></div></div>
+            <div style="text-align:center;"><a id="qrDlLink" class="action-btn" style="display:none;" download="qrcode.png">Save QR Image</a></div>
+        </div>
+
+        <!-- MODULE: SECURE PASSWORD GENERATOR -->
+        <div id="panel-password" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Secure Password Generator</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">High-Entropy Cryptographic Boundary</p>
+            <div class="flex-options">
+                <label>Character Bound:</label>
+                <input type="number" id="passLength" value="16" min="8" max="64" style="width:80px;">
+                <button onclick="generateSecurePassword()">Generate Keyphrase</button>
+            </div>
+            <div style="text-align:center; margin-top:20px;">
+                <input type="text" id="passOutput" readonly style="width:80%; max-width:400px; text-align:center; font-family:monospace; font-size:16px; color:#d4af37;">
+            </div>
+        </div>
+
+        <!-- MODULE: WORD COUNTER -->
+        <div id="panel-word" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Word Counter Engine</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Structural Text Diagnostics</p>
+            <textarea id="wordTextArea" style="width:100%; height:150px; resize:vertical; padding:15px;" placeholder="Paste or type textual data blocks here..." oninput="runWordCount()"></textarea>
+            <div class="flex-options" style="margin-top:10px;">
+                <span style="font-size:13px; color:#a1a1aa;">Words: <strong id="cWords" style="color:#d4af37;">0</strong></span>
+                <span style="font-size:13px; color:#a1a1aa; margin-left:20px;">Characters: <strong id="cChars" style="color:#d4af37;">0</strong></span>
+                <span style="font-size:13px; color:#a1a1aa; margin-left:20px;">Read Time: <strong id="cTime" style="color:#d4af37;">0m</strong></span>
+            </div>
+        </div>
+
+        <!-- MODULE: AGE CALCULATOR -->
+        <div id="panel-age" class="card tool-panel">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Chronological Age Calculator</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Temporal Horizon Computation</p>
+            <div class="flex-options">
+                <label>Date of Birth:</label><input type="date" id="ageBirth">
+                <button onclick="calculateChronologicalAge()">Calculate Intervals</button>
+            </div>
+            <div id="ageResultBox" style="text-align:center; display:none; margin-top:20px; padding:15px; background:#141416; border-radius:8px;">
+                <p id="agePrimaryText" style="font-size:24px; color:#d4af37; margin:0; font-family:'Playfair Display', serif;"></p>
+                <p id="ageSubText" style="font-size:13px; color:#a1a1aa; margin:5px 0 0 0;"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer style="max-width:950px; margin:auto; padding:20px 20px 60px 20px;"> 
+    
+    <!-- 8. HELPFUL GUIDES -->
+    <section style="padding:10px 0;">
+        <h2 style="font-size: 1.8rem; border-left: 3px solid #d4af37; padding-left: 15px; margin-bottom: 30px;">📚 Strategic Digital Guides & Articles</h2>
+        
+        <h3>How to Convert JPG to PNG</h3>
+        <p>
+        JPG and PNG represent different graphical implementations. While JPG maximizes storage efficiency for digital photography, PNG provides uncompressed pixel clarity and full alpha-channel transparency structures. Convert JPG to PNG when you need transparency or improved image quality.
+        </p>
+
+        <h3>PNG vs JPG: Dynamic Utility</h3>
+        <p>
+        PNG offers better quality and transparency support, while JPG provides smaller file sizes. PNG is excellent for logos and graphics, while JPG works best for photographs.
+        </p>
+
+        <h3>What Is WEBP Format?</h3>
+        <p>
+        WEBP is a cutting-edge graphical framework designed by Google. It delivers unmatched byte efficiency while preserving intricate pixel values, significantly lowering data footprints and helping websites load faster.
+        </p>
+
+        <h3>Benefits of Modern PDF Architecture</h3>
+        <p>
+        PDF files ensure layout preservation irrespective of local device fonts, displays, or operating software versions. They are widely used for reports, documents, invoices, and premium presentations.
+        </p>
+
+        <h3>How to Create a PDF from Images</h3>
+        <p>
+        Creating a PDF from images allows multiple pictures to be combined into a single document. This is useful for sharing photos, scanned documents, and corporate portfolios.
+        </p>
+
+        <h3>Best Image Formats for Websites</h3>
+        <p>
+        WEBP is often the best choice for websites because it provides smaller file sizes. JPG is suitable for rich photographs, while PNG remains optimal for geometric graphics and transparent layout images.
+        </p>
+
+        <h3>How Image Compression Works</h3>
+        <p>
+        Image compression reduces file size while maintaining acceptable image quality. Smaller files help websites load faster, preserve server bandwidth, and improve overall user experience metrics.
+        </p>
+
+        <h3>Why Mobile-Friendly Websites Matter</h3>
+        <p>
+        Most internet users browse on mobile devices. A mobile-friendly website provides an uncompromising experience and dramatically improves performance and search engine evaluation indexes.
+        </p>
+
+        <h3>Tips for Managing Digital Documents</h3>
+        <p>
+        Organize assets into clear directory structures, use PDF format for secure distributed files, and consistently run local data routines to prevent sudden data loss.
+        </p>
+
+        <h3>Common File Conversion Problems and Solutions</h3>
+        <p>
+        Some files may experience compression artifacting during heavy conversion routines. Choosing high-fidelity target formats and ensuring premium raw source quality helps yield elite results.
+        </p>
+
+        <h3>Elevating E-Commerce Conversion Rates with Next-Gen Rendering</h3>
+        <p>
+        In modern digital commerce networks, every millisecond shaved off a payload delivery directly yields increased user engagement. Moving legacy JPEG product images to optimized WebP models dramatically decreases page abandonment metrics while keeping close-up texture detail crisp and professional.
+        </p>
+
+        <h3>The Security Threshold: Why Local Sandbox File Rendering Matters</h3>
+        <p>
+        Traditional cloud converters force users to upload vulnerable data arrays to external servers, risking visibility breaches. Localized JavaScript computing processes all conversions entirely inside your machine's sandbox buffer—guaranteeing that confidential assets never navigate across open data channels.
+        </p>
+
+        <h3>Vectorization vs Rasterization: Maintaining High Contrast Document Quality</h3>
+        <p>
+        When bundling physical elements into high-density PDF modules, ensuring proper scaling ratios protects small text typography from blurring. Using dedicated client-side alignment nodes wraps rasterized pixel grids into clean structural vectors, making documents legible across large presentation screens and professional document prints.
+        </p>
+
+        <h3>The Rise of AVIF: Deciphering Next-Gen Image Standards</h3>
+        <p>
+        AVIF is a cutting-edge open-source image format derived from keyframes of the AV1 video codec. It offers significantly better compression than WebP, JPEG, and PNG, allowing websites to display stunning 10-bit color depth with deep HDR support at a fraction of standard file sizes. Adopting modern image standards ensures your web portals remain highly competitive, lightning-fast, and visually elite.
+        </p>
+
+        <h3>Metadata & Privacy: What Lies Hidden Inside Your Image Files</h3>
+        <p>
+        Every photograph captured by modern smartphones and digital cameras contains hidden EXIF data blocks. This metadata stores exact GPS coordinates, local timestamps, camera hardware configurations, and sometimes even the device owner's details. Converting your files through local client-side processing engines naturally strips or rewrites these hidden tracking variables, securing your physical location and personal privacy before sharing assets online.
+        </p>
+
+        <h3>Understanding Color Spaces: RGB, CMYK, and Web Calibration</h3>
+        <p>
+        Color fidelity varies drastically depending on target media standards. Digital displays rely on the additive RGB (Red, Green, Blue) spectrum, while commercial physical printing layouts function inside the subtractive CMYK (Cyan, Magenta, Yellow, Black) environment. When converting file types for branding, aligning color profiles ensures your logos and photography look consistent from mobile screens to physical retail billboards.
+        </p>
+
+        <h3>Lossless vs Lossy Compression: The Infinite Balancing Act</h3>
+        <p>
+        Lossless compression (like PNG) shrinks raw image files without discarding a single pixel of data, preserving crisp visual geometry. Lossy compression (like JPEG) permanently strips away minor gradients and subtle color shades that are less perceptible to the human eye to achieve massive storage savings. Knowing when to choose pure fidelity over raw performance is the foundation of digital asset optimization.
+        </p>
+
+        <h3>Why Responsive Layouts Demand Diverse Image Dimensions</h3>
+        <p>
+        Modern web design relies on dynamic grid structures that change scale based on screen sizes. Loading a single, giant desktop image on a mobile device wastes valuable mobile bandwidth, while loading small assets on high-resolution displays causes severe pixelation. Programmatic image conversion and resizing allow developers to serve customized assets optimized for every screen size.
+        </p>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section>
+        <h2>Frequently Asked Questions</h2>
+        <h3>Is this converter free?</h3>
+        <p>Yes, all structural modules remain open, ad-supported, and 100% cost-free for unlimited conversions.</p>
+        
+        <h3>Are my files secure?</h3>
+        <p>Your privacy is paramount. Files are compiled fully client-side inside your browser sandbox and are never uploaded, stored, or retained on an external server.</p>
+        
+        <h3>Can I access it via mobile?</h3>
+        <p>Yes, the responsive design scales smoothly across premium smartphone frameworks, offering flawless client-side processing on iOS and Android devices.</p>
+
+        <h3>What is the maximum file size I can upload?</h3>
+        <p>Since all processing occurs locally inside your browser's memory, there is no strict upload limit. However, for seamless processing and to prevent mobile browser memory crashes, we recommend files under 50MB.</p>
+
+        <h3>Does converting images reduce their original quality?</h3>
+        <p>Converting to lossless PNG maintains 100% pixel fidelity. When converting to JPEG or WebP, the engine applies subtle, high-grade lossy compression (95% quality rating) to dramatically reduce file sizes while keeping any quality loss imperceptible to the human eye.</p>
+
+        <h3>Do I need an internet connection to use this tool once it loads?</h3>
+        <p>No! Once this webpage is loaded in your browser tab, the conversion script runs entirely offline. You can convert images and compile PDFs without any active internet connection because the files never leave your device.</p>
+
+        <h3>Why does my PNG lose transparency when converting to JPG?</h3>
+        <p>The JPG image standard does not support alpha-channel transparency. When converting a transparent PNG to JPG, the transparent pixels are automatically rendered on a clean, solid white background layer.</p>
+
+        <h3>Is there a limit on how many files I can convert?</h3>
+        <p>Absolutely not. You can convert as many images and compile as many PDF documents as you need, without experiencing throttle limits, wait times, or usage caps.</p>
+    </section>
+
+    <!-- 10. ABOUT / CONTACT / PRIVACY / TERMS -->
+    <div class="footer-nav-links" style="border-top:1px solid rgba(212, 175, 55, 0.15); padding-top: 30px; text-align: center;">
+        <a href="about.html">About Us</a> |
+        <a href="contact.html">Contact Us</a> |
+        <a href="privacy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms & Conditions</a>
+    </div>
+    
+    <!-- 11. FOOTER -->
+    <div class="footer-text">AdSense-ready platform • Premium Layout Engine • GitHub Pages compatible</div>
+</footer>
+
+<script>
+// SPA Smooth Scroll and Target Highlight Engine
+function switchPanel(panelId) {
+    const targetedPanel = document.getElementById(panelId);
+    if(targetedPanel) {
+        window.scrollTo({ top: targetedPanel.offsetTop, behavior: 'smooth' });
+        
+        // Trigger a gorgeous temporary glowing visual highlight
+        targetedPanel.classList.remove('pulse-highlight');
+        void targetedPanel.offsetWidth; // Trigger DOM reflow to restart animation
+        targetedPanel.classList.add('pulse-highlight');
+    }
+}
+
+// SMART HIDE HEADER CONTROLLER
+let lastScrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+    const header = document.getElementById("dynamicLuxuryHeader");
+    if (!header) return;
+
+    if (window.scrollY > lastScrollY && window.scrollY > 150) {
+        // Scrolling Down -> Hide the massive header out of sight
+        header.style.transform = "translateY(-100%)";
+    } else {
+        // Scrolling Up -> Instantly restore header accessibility
+        header.style.transform = "translateY(0)";
+    }
+    lastScrollY = window.scrollY;
+});
+
+// Automatically bind Drag and Drop API directly to file drop zones
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.drop').forEach(dropZone => {
+        const onclickAttr = dropZone.getAttribute('onclick');
+        if (!onclickAttr) return;
+        const match = onclickAttr.match(/document\.getElementById\(['"]([^'"]+)['"]\)/);
+        if (!match) return;
+        const inputId = match[1];
+        const fileInput = document.getElementById(inputId);
+        if (!fileInput) return;
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, e => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
+        });
+
+        // Toggle visual cues
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.style.borderColor = '#d4af37';
+                dropZone.style.background = 'rgba(212, 175, 55, 0.08)';
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.style.borderColor = 'rgba(212, 175, 55, 0.35)';
+                dropZone.style.background = 'rgba(212, 175, 55, 0.01)';
+            }, false);
+        });
+
+        // Handle dropped files
+        dropZone.addEventListener('drop', e => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                const event = new Event('change', { bubbles: true });
+                fileInput.dispatchEvent(event);
+            }
+        }, false);
+    });
+});
+
+// Global Variables Memory Array Buffers
+let baseImgData = null;
+let compressionBuffer = null;
+let resizingBuffer = null;
+let extractedAudioUrl = null;
+
+// ===================================================
+// TOOL CORE MODULE: BASE HOME FILE PROCESSING ENGINE
+// ===================================================
+function handleBaseFile(file) {
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        baseImgData = e.target.result;
+        const prv = document.getElementById('preview');
+        prv.src = baseImgData;
+        prv.style.display = 'inline-block';
+    };
+    reader.readAsDataURL(file);
+}
+
+function convertBaseImage() {
+    if(!baseImgData) return alert("Upload an image asset first.");
+    const btn = document.getElementById('convertBtn');
+    btn.innerText = "Processing...";
+    const img = new Image();
+    img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.min(img.width, 3000);
+        canvas.height = Math.round((img.height * canvas.width) / img.width);
+        canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+        const format = document.getElementById("format").value;
+        const dl = document.createElement("a");
+        dl.href = canvas.toDataURL(format, 0.95);
+        dl.download = "converted." + format.split("/")[1];
+        dl.click();
+        btn.innerText = "Convert Image";
+    };
+    img.src = baseImgData;
+}
+
+function baseImageToPdf() {
+    if(!baseImgData) return alert("Upload an image asset first.");
+    const jsPDFEngine = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
+    if(!jsPDFEngine) return alert("Execution library loading failed.");
+    const img = new Image();
+    img.onload = () => {
+        const orientation = img.width > img.height ? 'l' : 'p';
+        const pdf = new jsPDFEngine({ orientation: orientation, unit: 'px', format: [img.width, img.height] });
+        pdf.addImage(baseImgData, 'JPEG', 0, 0, img.width, img.height);
+        pdf.save('document.pdf');
+    };
+    img.src = baseImgData;
+}
+
+// ===================================================
+// TOOL MODULE 1: IMAGE COMPRESSOR
+// ===================================================
+function processCompression(file) {
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => { compressionBuffer = e.target.result; };
+    reader.readAsDataURL(file);
+}
+function triggerCompression() {
+    if(!compressionBuffer) return alert("Upload an image file first.");
+    const quality = parseFloat(document.getElementById('compQuality').value);
+    const img = new Image();
+    img.onload = () => {
+        const cvs = document.createElement('canvas');
+        cvs.width = img.width; cvs.height = img.height;
+        cvs.getContext('2d').drawImage(img, 0, 0);
+        const outData = cvs.toDataURL('image/jpeg', quality);
+        const resBox = document.getElementById('compResult');
+        resBox.innerHTML = `<p style="color:#d4af37; font-size:13px;">Compression execution completed successfully.</p><a class="action-btn" href="${outData}" download="compressed.jpg">Download Compressed JPG</a>`;
+        resBox.style.display = "block";
+    };
+    img.src = compressionBuffer;
+}
+
+// ===================================================
+// TOOL MODULE 2: IMAGE RESIZER
+// ===================================================
+function loadResizeImage(file) {
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        resizingBuffer = e.target.result;
+        const img = new Image();
+        img.onload = () => {
+            document.getElementById('resizeWidth').value = img.width;
+            document.getElementById('resizeHeight').value = img.height;
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+function executeResize() {
+    if(!resizingBuffer) return alert("Upload an image file first.");
+    const w = parseInt(document.getElementById('resizeWidth').value);
+    const h = parseInt(document.getElementById('resizeHeight').value);
+    if(!w || !h) return alert("Provide dimension parameter limits.");
+    const img = new Image();
+    img.onload = () => {
+        const cvs = document.createElement('canvas');
+        cvs.width = w; cvs.height = h;
+        cvs.getContext('2d').drawImage(img, 0, 0, w, h);
+        const outData = cvs.toDataURL('image/png');
+        const resBox = document.getElementById('resizeResult');
+        resBox.innerHTML = `<a class="action-btn" href="${outData}" download="resized.png" style="margin-top:15px;">Download Resized Asset (PNG)</a>`;
+    };
+    img.src = resizingBuffer;
+}
+
+// ===================================================
+// TOOL MODULE 3 & 4: DIRECT FORMAT SUITES (PNG/JPG)
+// ===================================================
+function directConvert(file, mime, fileName) {
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+            const cvs = document.createElement('canvas');
+            cvs.width = img.width; cvs.height = img.height;
+            cvs.getContext('2d').drawImage(img, 0, 0);
+            const dl = document.createElement('a');
+            dl.href = cvs.toDataURL(mime, 0.95);
+            dl.download = fileName;
+            dl.click();
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+// ===================================================
+// TOOL MODULE 5: IMAGE TO PDF ENGINE
+// ===================================================
+function compileDirectPdf(file) {
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        const jsPDFEngine = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
+        const img = new Image();
+        img.onload = () => {
+            const orientation = img.width > img.height ? 'l' : 'p';
+            const pdf = new jsPDFEngine({ orientation: orientation, unit: 'px', format: [img.width, img.height] });
+            pdf.addImage(e.target.result, 'JPEG', 0, 0, img.width, img.height);
+            pdf.save('compiled.pdf');
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+// ===================================================
+// TOOL MODULE 6: PDF TO JPG ENGINE
+// ===================================================
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+function processPdfToJpg(file) {
+    if(!file) return;
+    document.getElementById('pdfStatus').style.display = 'block';
+    const gallery = document.getElementById('pdfGallery');
+    gallery.innerHTML = ''; gallery.style.display = 'grid';
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        pdfjsLib.getDocument(new Uint8Array(e.target.result)).promise.then(async pdf => {
+            for(let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const viewport = page.getViewport({scale: 1.5});
+                const cvs = document.createElement('canvas');
+                cvs.height = viewport.height; cvs.width = viewport.width;
+                await page.render({canvasContext: cvs.getContext('2d'), viewport: viewport}).promise;
+                const url = cvs.toDataURL('image/jpeg', 0.85);
+                const item = document.createElement('div'); item.className = 'gallery-item';
+                item.innerHTML = `<img src="${url}"><button style="padding:5px 10px; font-size:10px; margin-top:5px;" onclick="const a=document.createElement('a'); a.href='${url}'; a.download='page_${i}.jpg'; a.click();">Download</button>`;
+                gallery.appendChild(item);
+            }
+            document.getElementById('pdfStatus').style.display = 'none';
+        });
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+// ===================================================
+// TOOL MODULE 7: VIDEO TO AUDIO EXTRACTOR
+// ===================================================
+function extractAudioFromVideo(file) {
+    if(!file) return;
+    const outName = file.name.replace(/\.[^/.]+$/, "") + ".wav";
+    const box = document.getElementById('vidProgressBox');
+    const bar = document.getElementById('vidProgressBar');
+    const text = document.getElementById('vidProgressText');
+    box.style.display = 'block'; bar.style.width = '10%'; text.innerText = 'Analyzing stream nodes... (10%)';
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        bar.style.width = '30%'; text.innerText = 'Decoding internal channels... (30%)';
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContextClass();
+        audioCtx.decodeAudioData(e.target.result).then(buffer => {
+            bar.style.width = '60%'; text.innerText = 'Encoding lossless matrix array... (60%)';
+            let channels = [], numChan = buffer.numberOfChannels, length = buffer.length * numChan * 2 + 44, bufferArr = new ArrayBuffer(length), view = new DataView(bufferArr), pos = 0, offset = 0;
+            const setU32 = (d) => { view.setUint32(pos, d, true); pos += 4; };
+            const setU16 = (d) => { view.setUint16(pos, d, true); pos += 2; };
+            
+            setU32(0x46464952); // "RIFF" Byte Mapping Verification Fix Applied
+            setU32(length - 8); 
+            setU32(0x45564157); // "WAVE" 
+            setU32(0x20746d66); // "fmt " 
+            setU32(16); 
+            setU16(1); 
+            setU16(numChan); 
+            setU32(buffer.sampleRate); 
+            setU32(buffer.sampleRate * 2 * numChan); 
+            setU16(numChan * 2); 
+            setU16(16); 
+            setU32(0x61746164); // "data" 
+            setU32(length - pos - 4);
+            
+            for(let i=0; i<numChan; i++) channels.push(buffer.getChannelData(i));
+            while(pos < length) {
+                for(let i=0; i<numChan; i++) {
+                    let sample = Math.max(-1, Math.min(1, channels[i][offset]));
+                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+                    view.setInt16(pos, sample, true); pos += 2;
+                }
+                offset++;
+            }
+            if(extractedAudioUrl) URL.revokeObjectURL(extractedAudioUrl);
+            extractedAudioUrl = URL.createObjectURL(new Blob([bufferArr], {type: "audio/wav"}));
+            bar.style.width = '100%'; text.innerText = 'Extraction complete! (100%)';
+            
+            setTimeout(() => {
+                box.style.display = 'none';
+            }, 800);
+            
+            document.getElementById('vidInfoText').innerText = `Completed extraction: ${outName}`;
+            const dlBtn = document.getElementById('vidDownloadBtn');
+            dlBtn.onclick = () => { const a = document.createElement('a'); a.href = extractedAudioUrl; a.download = outName; a.click(); };
+            document.getElementById('videoAudioResult').style.display = 'block';
+        }).catch((err) => { 
+            console.error(err);
+            alert("Audio processing error. Make sure it is a valid video file."); 
+            box.style.display = 'none'; 
+        });
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+// ===================================================
+// TOOL MODULE 8: LUXURY QR CODE GENERATOR
+// ===================================================
+function generateQrCode() {
+    const out = document.getElementById('qrOutput'); out.innerHTML = '';
+    const text = document.getElementById('qrText').value;
+    const fg = document.getElementById('qrFg').value;
+    const bg = document.getElementById('qrBg').value;
+    new QRCode(out, { text: text, width: 180, height: 180, colorDark: fg, colorLight: bg, correctLevel: QRCode.CorrectLevel.H });
+    setTimeout(() => {
+        const cvs = out.querySelector('canvas');
+        if(cvs) {
+            const link = document.getElementById('qrDlLink');
+            link.href = cvs.toDataURL('image/png');
+            link.style.display = 'inline-block';
+        }
+    }, 200);
+}
+
+// ===================================================
+// TOOL MODULE 9: SECURE PASSWORD GENERATOR
+// ===================================================
+function generateSecurePassword() {
+    const len = parseInt(document.getElementById('passLength').value) || 16;
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+    let pass = "";
+    const cryptoObj = window.crypto || window.msCrypto;
+    if(cryptoObj && cryptoObj.getRandomValues) {
+        const values = new Uint32Array(len);
+        cryptoObj.getRandomValues(values);
+        for(let i = 0; i < len; i++) { pass += chars[values[i] % chars.length]; }
+    } else {
+        for(let i = 0; i < len; i++) { pass += chars.charAt(Math.floor(Math.random() * chars.length)); }
+    }
+    document.getElementById('passOutput').value = pass;
+}
+
+// ===================================================
+// TOOL MODULE 10: WORD COUNTER
+// ===================================================
+function runWordCount() {
+    const val = document.getElementById('wordTextArea').value.trim();
+    const words = val ? val.split(/\s+/).length : 0;
+    document.getElementById('cWords').innerText = words;
+    document.getElementById('cChars').innerText = val.length;
+    document.getElementById('cTime').innerText = Math.ceil(words / 200) + "m";
+}
+
+// ===================================================
+// TOOL MODULE 11: AGE CALCULATOR
+// ===================================================
+function calculateChronologicalAge() {
+    const birthVal = document.getElementById('ageBirth').value;
+    if(!birthVal) return alert("Select your date horizon boundary.");
+    const birth = new Date(birthVal), now = new Date();
+    let y = now.getFullYear() - birth.getFullYear(), m = now.getMonth() - birth.getMonth(), d = now.getDate() - birth.getDate();
+    if(d < 0) { m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+    if(m < 0) { y--; m += 12; }
+    document.getElementById('agePrimaryText').innerText = `${y} Years Old`;
+    document.getElementById('ageSubText').innerText = `Exactly ${m} Months and ${d} Days since initialization`;
+    document.getElementById('ageResultBox').style.display = 'block';
+}
+</script>
+</body>
+</html>
