@@ -1,110 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPG to PNG Converter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online JPG to PNG Converter - Convert Images Instantly</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
 
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#0f172a;
-color:white;
-text-align:center;
-padding:30px;
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.container{
-max-width:800px;
-margin:auto;
-background:rgba(255,255,255,0.1);
-padding:25px;
-border-radius:15px;
-}
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+        }
 
-button,input{
-padding:12px;
-margin:10px;
-border:none;
-border-radius:10px;
-}
+        h1 {
+            font-size: 26px;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
 
-button{
-cursor:pointer;
-background:#38bdf8;
-color:white;
-}
+        .subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
 
-img{
-max-width:100%;
-margin-top:20px;
-border-radius:10px;
-}
-</style>
+        .drop-zone {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: #f8fafc;
+        }
+
+        .drop-zone:hover, .drop-zone.drag-over {
+            border-color: var(--primary);
+            background-color: #eeecfd;
+        }
+
+        .drop-zone p {
+            margin: 10px 0 0 0;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .drop-zone input {
+            display: none;
+        }
+
+        .workspace {
+            display: none;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .preview-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            background: #fff;
+            margin-bottom: 20px;
+        }
+
+        .img-container {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .file-info {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .badge {
+            background-color: #e0e7ff;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.secondary {
+            background-color: #cbd5e1;
+            color: var(--text-main);
+        }
+
+        button.secondary:hover {
+            background-color: #94a3b8;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
+    <h1>JPG to PNG Converter</h1>
+    <p class="subtitle">Convert your JPG/JPEG images into high-quality, transparent-ready PNG files.</p>
 
-<h1>🖼️ JPG to PNG Converter</h1>
+    <div class="drop-zone" id="drop-zone">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: var(--primary); margin: 0 auto;">
+            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <p>Drag & drop your JPG image here, or <strong>browse files</strong></p>
+        <input type="file" id="file-input" accept="image/jpeg, image/jpg">
+    </div>
 
-<input type="file" id="fileInput" accept=".jpg,.jpeg,image/jpeg">
+    <div class="workspace" id="workspace">
+        <div class="preview-card">
+            <div class="img-container">
+                <img id="image-preview" alt="Uploaded Preview">
+            </div>
+            <div class="file-info" id="file-details">File Name.jpg</div>
+            <span class="badge">Ready to Convert to PNG</span>
+        </div>
 
-<br>
-
-<button onclick="convertToPNG()">Convert to PNG</button>
-
-<div id="preview"></div>
-<div id="download"></div>
-
+        <div class="btn-group">
+            <button class="secondary" onclick="resetConverter()">Choose Another</button>
+            <button id="convert-download-btn">Convert & Download PNG</button>
+        </div>
+    </div>
 </div>
 
 <script>
-function convertToPNG(){
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const workspace = document.getElementById('workspace');
+    const imagePreview = document.getElementById('image-preview');
+    const fileDetails = document.getElementById('file-details');
+    const downloadBtn = document.getElementById('convert-download-btn');
 
-const file=document.getElementById("fileInput").files[0];
+    let loadedImg = new Image();
+    let originalFileName = '';
 
-if(!file){
-alert("Please select a JPG image");
-return;
-}
+    dropZone.addEventListener('click', () => fileInput.click());
+    
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+    });
 
-const reader=new FileReader();
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
 
-reader.onload=function(e){
+    function handleFile(file) {
+        if (!file.type.includes('jpeg') && !file.type.includes('jpg')) {
+            alert('Please select a valid JPG or JPEG image file.');
+            return;
+        }
 
-const img=new Image();
+        originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+        fileDetails.innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
 
-img.onload=function(){
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            loadedImg.src = e.target.result;
+            imagePreview.src = e.target.result;
+            
+            loadedImg.onload = () => {
+                dropZone.style.display = 'none';
+                workspace.style.display = 'block';
+            };
+        };
+        reader.readAsDataURL(file);
+    }
 
-const canvas=document.createElement("canvas");
-canvas.width=img.width;
-canvas.height=img.height;
+    downloadBtn.addEventListener('click', () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = loadedImg.naturalWidth;
+        canvas.height = loadedImg.naturalHeight;
+        
+        ctx.drawImage(loadedImg, 0, 0);
 
-const ctx=canvas.getContext("2d");
-ctx.drawImage(img,0,0);
+        // Convert canvas data directly into a clean, standard PNG blob
+        canvas.toBlob((blob) => {
+            if (!blob) return;
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${originalFileName}.png`;
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+        }, 'image/png');
+    });
 
-canvas.toBlob(function(blob){
-
-const url=URL.createObjectURL(blob);
-
-document.getElementById("preview").innerHTML=
-'<h3>Preview</h3><img src="'+url+'">';
-
-document.getElementById("download").innerHTML=
-'<a href="'+url+'" download="converted.png"><button>Download PNG</button></a>';
-
-},'image/png');
-
-};
-
-img.src=e.target.result;
-
-};
-
-reader.readAsDataURL(file);
-}
+    function resetConverter() {
+        fileInput.value = '';
+        dropZone.style.display = 'block';
+        workspace.style.display = 'none';
+    }
 </script>
-
 </body>
 </html>
