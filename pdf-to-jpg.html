@@ -1,86 +1,402 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PDF to JPG Converter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert PDF to JPG Online - Extract Images Locally</title>
+    <!-- Mozilla PDF.js Library for client-side PDF rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-<style>
-body{
-font-family:Arial;
-background:#0f172a;
-color:white;
-text-align:center;
-padding:30px;
-}
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+        }
 
-button,input{
-padding:12px;
-margin:10px;
-}
+        h1 {
+            font-size: 26px;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
 
-img{
-max-width:100%;
-margin-top:20px;
-}
-</style>
+        .subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .drop-zone {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: #f8fafc;
+        }
+
+        .drop-zone:hover, .drop-zone.drag-over {
+            border-color: var(--primary);
+            background-color: #eef2ff;
+        }
+
+        .drop-zone p {
+            margin: 10px 0 0 0;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .drop-zone input {
+            display: none;
+        }
+
+        .status-message {
+            display: none;
+            text-align: center;
+            font-weight: 500;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .workspace {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .config-panel {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        .config-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .config-group label {
+            font-weight: 600;
+        }
+
+        .config-group select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+            max-height: 450px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .page-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .page-thumb {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: #e2e8f0;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            margin-bottom: 10px;
+        }
+
+        .page-info {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .download-btn {
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            transition: background 0.15s;
+        }
+
+        .download-btn:hover {
+            background-color: #16a34a;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        button.main-action {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button.main-action:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.secondary {
+            background-color: #cbd5e1;
+            color: var(--text-main);
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button.secondary:hover {
+            background-color: #94a3b8;
+        }
+    </style>
 </head>
 <body>
 
-<h1>🖼️ PDF to JPG Converter</h1>
+<div class="container">
+    <h1>PDF to JPG Converter</h1>
+    <p class="subtitle">Convert your PDF pages into separate images completely offline.</p>
 
-<input type="file" id="pdfInput" accept="application/pdf">
+    <div class="drop-zone" id="drop-zone">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: var(--primary); margin: 0 auto;">
+            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <p>Drag & drop your PDF file here, or <strong>click to browse</strong></p>
+        <input type="file" id="file-input" accept="application/pdf">
+    </div>
 
-<br>
+    <div class="status-message" id="status-msg">Processing PDF file...</div>
 
-<button onclick="convertPDF()">Convert PDF</button>
+    <div class="workspace" id="workspace">
+        <div class="config-panel">
+            <div class="config-group">
+                <label for="render-scale">Image Quality (Resolution)</label>
+                <select id="render-scale">
+                    <option value="1.0">Standard Quality (1x)</option>
+                    <option value="1.5" selected>Good Quality (1.5x)</option>
+                    <option value="2.0">High Definition (2x)</option>
+                    <option value="3.0">Ultra HD / Print (3x)</option>
+                </select>
+            </div>
+            <div class="config-group" style="justify-content: center;">
+                <span id="file-meta" style="font-weight:500; color:var(--text-muted);">Pages found: 0</span>
+            </div>
+        </div>
 
-<div id="result"></div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+
+        <div class="btn-group">
+            <button class="secondary" onclick="resetPage()">Upload Different File</button>
+            <button class="main-action" id="download-all-btn">Download All Images</button>
+        </div>
+    </div>
+</div>
 
 <script>
+    // Point PDF.js to the worker script version from CDN
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
 
-async function convertPDF(){
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const statusMsg = document.getElementById('status-msg');
+    const workspace = document.getElementById('workspace');
+    const galleryGrid = document.getElementById('gallery-grid');
+    const renderScale = document.getElementById('render-scale');
+    const fileMeta = document.getElementById('file-meta');
+    const downloadAllBtn = document.getElementById('download-all-btn');
 
-const file=document.getElementById("pdfInput").files[0];
+    let currentPdf = null;
+    let baseFileName = "extracted_page";
+    let extractedImages = [];
 
-if(!file){
-alert("Select a PDF file");
-return;
-}
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) handlePdfFile(e.dataTransfer.files[0]);
+    });
 
-const pdfData=await file.arrayBuffer();
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handlePdfFile(e.target.files[0]);
+    });
 
-const pdf=await pdfjsLib.getDocument({
-data:pdfData
-}).promise;
+    renderScale.addEventListener('change', () => {
+        if (currentPdf) renderAllPages(currentPdf);
+    });
 
-const page=await pdf.getPage(1);
+    function handlePdfFile(file) {
+        if (file.type !== "application/pdf") {
+            alert("Please provide a valid PDF document.");
+            return;
+        }
 
-const viewport=page.getViewport({
-scale:2
-});
+        baseFileName = file.name.replace(/\.[^/.]+$/, "");
+        dropZone.style.display = 'none';
+        statusMsg.style.display = 'block';
+        statusMsg.innerText = "Reading document layers...";
 
-const canvas=document.createElement("canvas");
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const typedarray = new Uint8Array(e.target.result);
+            
+            pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+                currentPdf = pdf;
+                fileMeta.innerText = `Total Pages: ${pdf.numPages}`;
+                renderAllPages(pdf);
+            }).catch(err => {
+                alert("Failed to read PDF file structure: " + err.message);
+                resetPage();
+            });
+        };
+        reader.readAsArrayBuffer(file);
+    }
 
-const ctx=canvas.getContext("2d");
+    async function renderAllPages(pdf) {
+        galleryGrid.innerHTML = '';
+        extractedImages = [];
+        workspace.style.display = 'block';
+        
+        const scale = parseFloat(renderScale.value);
 
-canvas.width=viewport.width;
-canvas.height=viewport.height;
+        for (let i = 1; i <= pdf.numPages; i++) {
+            statusMsg.innerText = `Rendering page ${i} of ${pdf.numPages}...`;
+            
+            try {
+                const page = await pdf.getPage(i);
+                const viewport = page.getViewport({ scale: scale });
+                
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
-await page.render({
-canvasContext:ctx,
-viewport:viewport
-}).promise;
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
 
-const imageURL=canvas.toDataURL("image/jpeg");
+                await page.render(renderContext).promise;
+                
+                // Compress canvas structure to JPEG image sequence
+                const imgDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+                extractedImages.push({ pageNum: i, data: imgDataUrl });
 
-document.getElementById("result").innerHTML=
-'<img src="'+imageURL+'"><br><a href="'+imageURL+'" download="page1.jpg"><button>Download JPG</button></a>';
+                // Construct UI cards
+                const card = document.createElement('div');
+                card.className = 'page-card';
+                card.innerHTML = `
+                    <img src="${imgDataUrl}" class="page-thumb">
+                    <div class="page-info">Page ${i}</div>
+                    <button class="download-btn" onclick="downloadSinglePage(${i})">Download JPG</button>
+                `;
+                galleryGrid.appendChild(card);
+                
+            } catch (err) {
+                console.error(`Error processing page ${i}:`, err);
+            }
+        }
+        statusMsg.style.display = 'none';
+    }
 
-}
+    window.downloadSinglePage = function(pageNum) {
+        const match = extractedImages.find(item => item.pageNum === pageNum);
+        if (!match) return;
+
+        const anchor = document.createElement('a');
+        anchor.href = match.data;
+        anchor.download = `${baseFileName}_page_${pageNum}.jpg`;
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    };
+
+    downloadAllBtn.addEventListener('click', () => {
+        if (extractedImages.length === 0) return;
+        
+        // Triggers sequential browser downloads for all pages
+        extractedImages.forEach(img => {
+            setTimeout(() => {
+                downloadSinglePage(img.pageNum);
+            }, img.pageNum * 250); // Small interval stagger prevents browser thread blocking
+        });
+    });
+
+    function resetPage() {
+        currentPdf = null;
+        extractedImages = [];
+        fileInput.value = '';
+        dropZone.style.display = 'block';
+        workspace.style.display = 'none';
+        statusMsg.style.display = 'none';
+    }
 </script>
-
 </body>
 </html>
