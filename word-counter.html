@@ -1,36 +1,504 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Word Counter</title>
-<style>
-body{font-family:Arial;background:#0f172a;color:white;text-align:center;padding:30px}
-textarea{width:90%;height:200px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Word Counter & Keyword Density Analytics Tool</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --accent: #f0fdf4;
+            --accent-text: #166534;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 950px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        /* Metrics Display Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        @media (min-width: 600px) {
+            .metrics-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .metric-card {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        /* Layout Structure */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 850px) {
+            .main-layout {
+                grid-template-columns: 3fr 2fr;
+            }
+        }
+
+        /* Editor Area */
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 320px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            border-color: var(--primary);
+        }
+
+        /* Utility Buttons Group */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tool-btn {
+            background-color: #e2e8f0;
+            color: var(--text-main);
+            border: none;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tool-btn:hover {
+            background-color: #cbd5e1;
+        }
+
+        .tool-btn.danger {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .tool-btn.danger:hover {
+            background-color: #fca5a5;
+        }
+
+        /* Sidebar Analytics */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            background: #fff;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .time-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 14px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .time-row:last-child {
+            border-bottom: none;
+        }
+
+        .time-value {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Density Analytics Table */
+        .density-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .density-table th {
+            text-align: left;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding-bottom: 8px;
+        }
+
+        .density-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .density-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .keyword-badge {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            display: inline-block;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .density-bar-container {
+            width: 100%;
+            background: #f1f5f9;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .density-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .empty-notice {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 13px;
+            text-align: center;
+            padding: 15px 0;
+        }
+    </style>
 </head>
 <body>
 
-<h1>📝 Word Counter</h1>
+<div class="container">
+    <h1>Advanced Word Counter</h1>
+    <p class="subtitle">Real-time deep character logging, reading speed benchmarks, and keyword analysis.</p>
 
-<textarea id="text"></textarea>
+    <!-- Essential Metric Cards Top Banner -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-value" id="count-words">0</div>
+            <div class="metric-label">Words</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" id="count-chars">0</div>
+            <div class="metric-label">Characters</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" id="count-sentences">0</div>
+            <div class="metric-label">Sentences</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" id="count-paragraphs">0</div>
+            <div class="metric-label">Paragraphs</div>
+        </div>
+    </div>
 
-<br><br>
+    <!-- Main Operational Dynamic Split Layout -->
+    <div class="main-layout">
+        <!-- Editor Input Panel (Left Column) -->
+        <div class="editor-container">
+            <textarea id="text-input" placeholder="Start typing, or copy-paste your content here to begin analysis..."></textarea>
+            
+            <div class="toolbar">
+                <button class="tool-btn" onclick="modifyCase('upper')">UPPERCASE</button>
+                <button class="tool-btn" onclick="modifyCase('lower')">lowercase</button>
+                <button class="tool-btn" onclick="modifyCase('title')">Title Case</button>
+                <button class="tool-btn" onclick="copyText()">Copy Text</button>
+                <button class="tool-btn danger" onclick="clearText()">Clear Input</button>
+            </div>
+        </div>
 
-<button onclick="countWords()">Count</button>
+        <!-- Analytical Panels (Right Column Sidebar) -->
+        <div class="sidebar">
+            <!-- Time Estimations -->
+            <div class="panel">
+                <div class="panel-title">Timing Estimates</div>
+                <div class="time-row">
+                    <span>Reading Time (~225 wpm)</span>
+                    <span class="time-value" id="time-read">0s</span>
+                </div>
+                <div class="time-row">
+                    <span>Speaking Time (~140 wpm)</span>
+                    <span class="time-value" id="time-speak">0s</span>
+                </div>
+                <div class="time-row">
+                    <span>Characters (No Spaces)</span>
+                    <span class="time-value" id="chars-no-spaces">0</span>
+                </div>
+            </div>
 
-<h2 id="result"></h2>
+            <!-- Top Keyword Density Engine -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span>Keyword Density</span>
+                    <span style="font-size: 11px; font-weight: normal; color: var(--text-muted);">(Excluding Stop Words)</span>
+                </div>
+                <div id="density-container">
+                    <div class="empty-notice">Enter some text to populate keyword density metrics.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-function countWords(){
-const text=document.getElementById("text").value.trim();
+    const textInput = document.getElementById('text-input');
+    
+    // Core Metric DOM Pointers
+    const countWords = document.getElementById('count-words');
+    const countChars = document.getElementById('count-chars');
+    const countSentences = document.getElementById('count-sentences');
+    const countParagraphs = document.getElementById('count-paragraphs');
+    
+    // Supplemental Detail DOM Pointers
+    const timeRead = document.getElementById('time-read');
+    const timeSpeak = document.getElementById('time-speak');
+    const charsNoSpaces = document.getElementById('chars-no-spaces');
+    const densityContainer = document.getElementById('density-container');
 
-const words=text===""?0:text.split(/\s+/).length;
+    // Comprehensive list of standard structural English structural filler words to skip in text density tracking
+    const STOP_WORDS = new Set([
+        'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'is', 'am', 'are', 
+        'was', 'were', 'be', 'been', 'being', 'it', 'its', 'that', 'this', 'these', 'those', 'you', 'your',
+        'i', 'me', 'my', 'he', 'him', 'his', 'she', 'her', 'they', 'them', 'their', 'we', 'us', 'our',
+        'with', 'as', 'by', 'from', 'about', 'into', 'through', 'than', 'then', 'so', 'if', 'not', 'no',
+        'can', 'will', 'would', 'should', 'could', 'do', 'does', 'did', 'have', 'has', 'had', 'go', 'get'
+    ]);
 
-const chars=text.length;
+    textInput.addEventListener('input', runAnalytics);
 
-document.getElementById("result").innerHTML=
-"Words: "+words+"<br>Characters: "+chars;
-}
+    function runAnalytics() {
+        const text = textInput.value;
+        
+        // 1. Core Simple Calculations
+        const totalChars = text.length;
+        const noSpacesCount = text.replace(/\s/g, '').length;
+        
+        // Clean text arrays for exact word evaluation
+        const cleanTextArray = text.trim().split(/\s+/).filter(word => word.length > 0);
+        const totalWords = cleanTextArray.length;
+
+        // Sentence tracking logic boundary checks
+        const totalSentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0).length;
+        
+        // Paragraph parsing matching breaks
+        const totalParagraphs = text.split(/\n+/).filter(para => para.trim().length > 0).length;
+
+        // Update Text Output Display Cards
+        countWords.innerText = totalWords;
+        countChars.innerText = totalChars;
+        countSentences.innerText = totalSentences;
+        countParagraphs.innerText = totalParagraphs;
+        charsNoSpaces.innerText = noSpacesCount;
+
+        // 2. Dynamic Progression Timing Estimates
+        // Reading calculations benchmarked globally at roughly 225 words per minute
+        const readSecondsTotal = Math.ceil((totalWords / 225) * 60);
+        timeRead.innerText = formatDuration(readSecondsTotal);
+
+        // Speaking calculation patterns scaled roughly around 140 words per minute
+        const speakSecondsTotal = Math.ceil((totalWords / 140) * 60);
+        timeSpeak.innerText = formatDuration(speakSecondsTotal);
+
+        // 3. Keyword Density Extraction Core
+        calculateKeywordDensity(cleanTextArray, totalWords);
+    }
+
+    function calculateKeywordDensity(wordsArray, totalWordsCount) {
+        if (wordsArray.length === 0) {
+            densityContainer.innerHTML = '<div class="empty-notice">Enter some text to populate keyword density metrics.</div>';
+            return;
+        }
+
+        const frequencyMap = {};
+        
+        wordsArray.forEach(rawWord => {
+            // Clean word formats removing numeric structural points or stray symbols
+            const standardWord = rawWord.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"'’]/g, "");
+            
+            if (standardWord && standardWord.length > 1 && !STOP_WORDS.has(standardWord)) {
+                frequencyMap[standardWord] = (frequencyMap[standardWord] || 0) + 1;
+            }
+        });
+
+        // Convert key mappings into sortable array matrices
+        const sortedKeywords = Object.keys(frequencyMap).map(key => {
+            return { word: key, count: frequencyMap[key] };
+        }).sort((a, b) => b.count - a.count);
+
+        if (sortedKeywords.length === 0) {
+            densityContainer.innerHTML = '<div class="empty-notice">Type more unique descriptive words to view analytics.</div>';
+            return;
+        }
+
+        // Isolate Top 5 dense repetitive expressions
+        const topKeywords = sortedKeywords.slice(0, 5);
+        const highestFrequencyCount = topKeywords[0].count;
+
+        let tableHtml = `
+            <table class="density-table">
+                <thead>
+                    <tr>
+                        <th>Keyword</th>
+                        <th style="text-align: right;">Count</th>
+                        <th style="text-align: right;">Density</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        topKeywords.forEach(item => {
+            const relativeDensityPercentage = ((item.count / totalWordsCount) * 100).toFixed(1);
+            // Bar relative scaling layout match relative to highest recurring value maxes
+            const barWidthPercent = ((item.count / highestFrequencyCount) * 100).toFixed(0);
+
+            tableHtml += `
+                <tr>
+                    <td style="width: 50%;">
+                        <span class="keyword-badge">${item.word}</span>
+                        <div class="density-bar-container">
+                            <div class="density-bar" style="width: ${barWidthPercent}%;"></div>
+                        </div>
+                    </td>
+                    <td style="text-align: right; font-weight: 600; width: 20%; vertical-align: top; padding-top: 10px;">${item.count}</td>
+                    <td style="text-align: right; color: var(--text-muted); width: 30%; vertical-align: top; padding-top: 10px;">${relativeDensityPercentage}%</td>
+                </tr>
+            `;
+        });
+
+        tableHtml += '</tbody></table>';
+        densityContainer.innerHTML = tableHtml;
+    }
+
+    function formatDuration(seconds) {
+        if (seconds < 60) return `${seconds}s`;
+        const minutes = Math.floor(seconds / 60);
+        const remainingSecs = seconds % 60;
+        return remainingSecs > 0 ? `${minutes}m ${remainingSecs}s` : `${minutes}m`;
+    }
+
+    // Toolbar Modifications Implementations
+    function modifyCase(type) {
+        const text = textInput.value;
+        if (!text) return;
+
+        if (type === 'upper') {
+            textInput.value = text.toUpperCase();
+        } else if (type === 'lower') {
+            textInput.value = text.toLowerCase();
+        } else if (type === 'title') {
+            textInput.value = text.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+        }
+        runAnalytics();
+    }
+
+    function copyText() {
+        if (!textInput.value) return;
+        textInput.select();
+        document.execCommand('copy');
+        alert('Text copied to clipboard successfully!');
+    }
+
+    function clearText() {
+        textInput.value = '';
+        runAnalytics();
+    }
 </script>
-
 </body>
 </html>
