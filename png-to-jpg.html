@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online PNG to JPG Converter - Convert Images Securely</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .drop-zone {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: #f8fafc;
+        }
+
+        .drop-zone:hover, .drop-zone.drag-over {
+            border-color: var(--primary);
+            background-color: #f0f9ff;
+        }
+
+        .drop-zone p {
+            margin: 10px 0 0 0;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .drop-zone input {
+            display: none;
+        }
+
+        .workspace {
+            display: none;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .preview-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            background: #fff;
+            margin-bottom: 20px;
+        }
+
+        .img-container {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e2e8f0; /* Transparent grid styling simulation */
+            background-image: linear-gradient(45deg, #cbd5e1 25%, transparent 25%), linear-gradient(-45deg, #cbd5e1 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #cbd5e1 75%), linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .file-info {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .bg-selector-panel {
+            background-color: #f1f5f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        .bg-selector-panel label {
+            font-weight: 600;
+        }
+
+        .bg-selector-panel select {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.secondary {
+            background-color: #cbd5e1;
+            color: var(--text-main);
+        }
+
+        button.secondary:hover {
+            background-color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>PNG to JPG Converter</h1>
+    <p class="subtitle">Convert PNG assets to clean, lightweight JPG images with custom transparency correction.</p>
+
+    <div class="drop-zone" id="drop-zone">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: var(--primary); margin: 0 auto;">
+            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <p>Drag & drop your PNG image here, or <strong>browse files</strong></p>
+        <input type="file" id="file-input" accept="image/png">
+    </div>
+
+    <div class="workspace" id="workspace">
+        <div class="preview-card">
+            <div class="img-container">
+                <img id="image-preview" alt="Uploaded Preview">
+            </div>
+            <div class="file-info" id="file-details">File Name.png</div>
+            
+            <div class="bg-selector-panel">
+                <label for="bg-color">Replace Transparency With:</label>
+                <select id="bg-color">
+                    <option value="#ffffff">White Background (Default)</option>
+                    <option value="#000000">Black Background</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="secondary" onclick="resetConverter()">Choose Another</button>
+            <button id="convert-download-btn">Convert & Download JPG</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const workspace = document.getElementById('workspace');
+    const imagePreview = document.getElementById('image-preview');
+    const fileDetails = document.getElementById('file-details');
+    const bgColorSelect = document.getElementById('bg-color');
+    const downloadBtn = document.getElementById('convert-download-btn');
+
+    let loadedImg = new Image();
+    let originalFileName = '';
+
+    dropZone.addEventListener('click', () => fileInput.click());
+    
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
+
+    function handleFile(file) {
+        if (!file.type.includes('png')) {
+            alert('Please select a valid PNG image file.');
+            return;
+        }
+
+        originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+        fileDetails.innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            loadedImg.src = e.target.result;
+            imagePreview.src = e.target.result;
+            
+            loadedImg.onload = () => {
+                dropZone.style.display = 'none';
+                workspace.style.display = 'block';
+            };
+        };
+        reader.readAsDataURL(file);
+    }
+
+    downloadBtn.addEventListener('click', () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = loadedImg.naturalWidth;
+        canvas.height = loadedImg.naturalHeight;
+        
+        // Fix transparency issue: fill background with the user's color preference first
+        ctx.fillStyle = bgColorSelect.value;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw the transparent PNG layer right over the top
+        ctx.drawImage(loadedImg, 0, 0);
+
+        canvas.toBlob((blob) => {
+            if (!blob) return;
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${originalFileName}.jpg`;
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+        }, 'image/jpeg', 0.92); // 0.92 sets high-quality resolution compression balance
+    });
+
+    function resetConverter() {
+        fileInput.value = '';
+        dropZone.style.display = 'block';
+        workspace.style.display = 'none';
+    }
+</script>
+</body>
+</html>
