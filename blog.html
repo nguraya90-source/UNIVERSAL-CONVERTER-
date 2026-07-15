@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Universal Converter Pro</title>
+    
+    <!-- Luxury Typography Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #f4f4f5;
+            background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%);
+            min-height: 100vh;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #d4af37;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        .main-title {
+            background: linear-gradient(135deg, #fff 40%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3.5px;
+            color: #a1a1aa;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: rgba(22, 22, 25, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 45px 35px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 40px;
+        }
+        /* Fixes the ugly blue link issue */
+        a {
+            color: #c5a880;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #fff;
+        }
+        .article-title a {
+            color: #d4af37;
+        }
+        .article-title a:hover {
+            color: #fff;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
+            margin: 40px 0;
+        }
+        header nav a {
+            margin: 0 15px;
+            color: #a1a1aa;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        header nav a:hover {
+            color: #d4af37;
+        }
+        .footer-text {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 11px;
+            color: #52525b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVIGATION HEADER -->
+    <header style="padding:20px 20px; text-align:center; background:rgba(15, 15, 17, 0.85); border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+        <h1 style="margin:0; font-size: 1.7rem;" class="main-title">UNIVERSAL CONVERTER PRO</h1>
+        <p style="margin: 5px 0 0 0;" class="subtitle">Fast • Free • Secure File Conversion</p>
+        <nav style="margin-top:15px;">
+            <a href="index.html">Home</a>
+            <a href="blog.html" style="color: #d4af37;">Blog</a>
+        </nav>
+    </header>
+
+    <!-- 2. MAIN BLOG WORKSPACE -->
+    <div class="container">
+        <div class="card">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">Educational Guides & Insights</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:45px;">Optimize Your Digital Workflows</p>
+            
+            <!-- ARTICLE ENTRY #1 -->
+            <article style="margin-bottom: 45px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 30px;">
+                <h3 class="article-title" style="font-size: 1.6rem; margin: 0 0 10px 0;">
+                    <a href="why-use-webp.html">Why You Should Use WebP Format for Your Website</a>
+                </h3>
+                <p style="font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0;">Published: July 2026</p>
+                <p style="color: #d4d4d8; margin-bottom: 15px;">
+                    WebP images are significantly smaller than traditional JPEGs while keeping the exact same crisp quality. Discover how switching your site assets to WebP can make your pages load twice as fast and boost your Google SEO rankings.
+                </p>
+                <a href="why-use-webp.html" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Read Full Article &rarr;</a>
+            </article>
+
+            <!-- Future articles can be added right here -->
+
+        </div>
+    </div>
+
+    <!-- 3. FOOTER -->
+    <footer style="max-width:850px; margin:auto; padding:20px 20px 60px 20px; text-align: center;"> 
+        <div style="border-top:1px solid rgba(212, 175, 55, 0.15); padding-top: 30px;">
+            <a href="about.html">About Us</a> |
+            <a href="contact.html">Contact Us</a> |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+        <div class="footer-text">AdSense-ready platform • Premium Layout Engine</div>
+    </footer>
+
+</body>
+</html>
