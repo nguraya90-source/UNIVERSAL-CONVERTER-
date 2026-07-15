@@ -3,193 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Universal Converter Pro</title>
-    
-    <!-- Luxury Typography Imports -->
+    <title>Insights & Guides - Universal Converter Pro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: #f4f4f5; 
+            background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%); 
+            min-height: 100vh; 
+            letter-spacing: 0.5px; 
+            line-height: 1.6; 
         }
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: #f4f4f5;
-            background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%);
-            min-height: 100vh;
-            letter-spacing: 0.5px;
-            line-height: 1.7;
+        
+        /* Header Styling */
+        header {
+            padding: 30px 20px; 
+            text-align: center; 
+            background: rgba(15, 15, 17, 0.85); 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        h1, h2, h3 {
+        .main-title { 
             font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #fff 40%, #d4af37 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            letter-spacing: 2px;
+        }
+        .subtitle { 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            color: #a1a1aa; 
+            margin-top: 5px;
+        }
+
+        /* Hero / Introduction */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
             color: #d4af37;
             font-weight: 400;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            color: #a1a1aa;
+            font-size: 16px;
+        }
+
+        /* Grid Container */
+        .container { 
+            max-width: 1200px; 
+            margin: auto; 
+            padding: 0 20px 80px 20px; 
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Blog Card Styling */
+        .blog-card { 
+            background: rgba(22, 22, 25, 0.8); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            padding: 35px 30px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(212, 175, 55, 0.12); 
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.15);
+        }
+
+        .category { 
+            font-size: 11px; 
+            color: #d4af37; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .blog-card h3 { 
+            font-family: 'Playfair Display', serif; 
+            color: #fff; 
+            font-size: 1.4rem;
+            font-weight: 400; 
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .blog-card p { 
+            color: #a1a1aa; 
+            font-size: 14px; 
+            margin-bottom: 25px;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+        .date {
+            font-size: 12px;
+            color: #71717a;
+        }
+        .read-link { 
+            color: #c5a880; 
+            text-decoration: none; 
+            font-size: 12px; 
+            text-transform: uppercase; 
             letter-spacing: 1px;
+            font-weight: 600;
+            transition: color 0.2s ease; 
         }
-        .main-title {
-            background: linear-gradient(135deg, #fff 40%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .subtitle {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 3.5px;
-            color: #a1a1aa;
-        }
-        .container {
-            max-width: 850px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-        .card {
-            background: rgba(22, 22, 25, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 45px 35px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
-            margin-bottom: 40px;
-        }
-        /* Fixes the ugly blue link issue */
-        a {
-            color: #c5a880;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        a:hover {
+        .blog-card:hover .read-link {
             color: #fff;
         }
-        .article-title a {
+
+        /* Back to Tool link in header */
+        .nav-link {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
             color: #d4af37;
-        }
-        .article-title a:hover {
-            color: #fff;
-        }
-        hr {
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
-            margin: 40px 0;
-        }
-        header nav a {
-            margin: 0 15px;
-            color: #a1a1aa;
+            text-decoration: none;
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            font-weight: 600;
         }
-        header nav a:hover {
-            color: #d4af37;
+        .nav-link:hover {
+            color: #fff;
         }
-        .footer-text {
-            text-align: center;
-            margin-top: 35px;
-            font-size: 11px;
-            color: #52525b;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+
+        @media (max-width: 768px) {
+            .nav-link {
+                position: static;
+                display: block;
+                margin-bottom: 15px;
+                transform: none;
+            }
+            header {
+                padding: 20px;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- 1. NAVIGATION HEADER -->
-    <header style="padding:20px 20px; text-align:center; background:rgba(15, 15, 17, 0.85); border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-        <h1 style="margin:0; font-size: 1.7rem;" class="main-title">UNIVERSAL CONVERTER PRO</h1>
-        <p style="margin: 5px 0 0 0;" class="subtitle">Fast • Free • Secure File Conversion</p>
-        <nav style="margin-top:15px;">
-            <a href="index.html">Home</a>
-            <a href="blog.html" style="color: #d4af37;">Blog</a>
-        </nav>
+    <header>
+        <a href="index.html" class="nav-link">&larr; Back to Converter</a>
+        <h1 class="main-title">UNIVERSAL CONVERTER PRO</h1>
+        <p class="subtitle">Fast • Free • Secure File Conversion</p>
     </header>
 
-    <!-- 2. MAIN BLOG WORKSPACE -->
+    <section class="hero">
+        <h2>The Editorial Hub</h2>
+        <p>Expert tips, security guides, and optimal formatting practices for digital publishers, creators, and developers.</p>
+    </section>
+
     <div class="container">
-        <div class="card">
-            <h2 style="text-align:center; margin-top:0; color:#fff;">Educational Guides & Insights</h2>
-            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:45px;">Optimize Your Digital Workflows</p>
-            
-            <!-- ARTICLE ENTRY #1 -->
-            <article style="margin-bottom: 45px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 30px;">
-                <h3 class="article-title" style="font-size: 1.6rem; margin: 0 0 10px 0;">
-                    <a href="why-use-webp.html">Why You Should Use WebP Format for Your Website</a>
-                </h3>
-                <p style="font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0;">Published: July 2026</p>
-                <p style="color: #d4d4d8; margin-bottom: 15px;">
-                    WebP images are significantly smaller than traditional JPEGs while keeping the exact same crisp quality. Discover how switching your site assets to WebP can make your pages load twice as fast and boost your Google SEO rankings.
-                </p>
-                <a href="why-use-webp.html" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Read Full Article &rarr;</a>
+        <main class="blog-grid">
+
+            <!-- Card 1: PNG vs JPG (NEW) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Image Assets</div>
+                    <h3>PNG vs. JPG: Which Graphic Format is Best for Digital Use?</h3>
+                    <p>Picking the wrong image extension can ruin transparent backgrounds or slow down your page speeds. Learn when to use each format.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">July 2026</span>
+                    <a href="png-vs-jpg-differences.html" class="read-link">Read Article &rarr;</a>
+                </div>
             </article>
 
-            <!-- Future articles can be added right here -->
-<!-- ARTICLE ENTRY #2 -->
-<article style="margin-bottom: 45px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 30px;">
-    <h3 class="article-title" style="font-size: 1.6rem; margin: 0 0 10px 0;">
-        <a href="how-to-compress-videos.html">How to Compress Large Video Files Without Losing Quality</a>
-    </h3>
-    <p style="font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0;">Published: July 2026</p>
-    <p style="color: #d4d4d8; margin-bottom: 15px;"> Learn the best settings and formats to shrink your video files dramatically while keeping them looking beautifully crisp. </p>
-    <a href="how-to-compress-videos.html" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Read Full Article &rarr;</a>
-</article>
+            <!-- Card 2: QR Safety (NEW) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Cybersecurity</div>
+                    <h3>How to Scan QR Codes Safely: Defending Against Fraud</h3>
+                    <p>Learn how physical sticker overlaps and fake URLs are used in "quishing" attacks, and how to spot safe matrices before you scan.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">July 2026</span>
+                    <a href="how-to-scan-qr-codes-safely.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
 
-<!-- ARTICLE ENTRY #3 -->
-<article style="margin-bottom: 45px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 30px;">
-    <h3 class="article-title" style="font-size: 1.6rem; margin: 0 0 10px 0;">
-        <a href="understanding-audio-formats.html">MP3 vs. WAV: Which Audio Format is Best for You?</a>
-    </h3>
-    <p style="font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0;">Published: July 2026</p>
-    <p style="color: #d4d4d8; margin-bottom: 15px;"> Discover the core differences between compressed and uncompressed audio formats so you know exactly which one to choose for your project. </p>
-    <a href="understanding-audio-formats.html" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Read Full Article &rarr;</a>
-</article>
+            <!-- Card 3: Image Metadata (NEW) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Privacy & Forensic Meta</div>
+                    <h3>What is Image Metadata? Hidden Layers inside Files</h3>
+                    <p>Every photo you take stores GPS location, camera gear details, and timestamps. Learn how EXIF data works and how to strip it.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">July 2026</span>
+                    <a href="what-is-metadata-in-images.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
 
-<!-- ARTICLE ENTRY #4 -->
-<article style="margin-bottom: 45px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 30px;">
-    <h3 class="article-title" style="font-size: 1.6rem; margin: 0 0 10px 0;">
-        <a href="best-image-resizing-tips.html">The Ultimate Guide to Image Resizing for Social Media</a>
-    </h3>
-    <p style="font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0;">Published: July 2026</p>
-    <p style="color: #d4d4d8; margin-bottom: 15px;"> Stop uploading blurry pictures. Here are the exact dimensions you need to resize your images to fit perfectly on every major platform. </p>
-    <a href="best-image-resizing-tips.html" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Read Full Article &rarr;</a>
-</article>
+            <!-- Card 4: Writing Tools (NEW) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Content Productivity</div>
+                    <h3>Top 5 Online Writing Utilities for Digital Content Creators</h3>
+                    <p>Looking to elevate your draft metrics? Here are the essential editing systems, word counters, and layout guides every writer needs.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">July 2026</span>
+                    <a href="top-5-online-writing-tools.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
 
-<!-- ARTICLE ENTRY #5 -->
-<article style="margin-bottom: 45px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 30px;">
-    <h3 class="article-title" style="font-size: 1.6rem; margin: 0 0 10px 0;">
-        <a href="what-is-a-qr-code.html">How QR Codes Work and Why Your Business Needs Them</a>
-    </h3>
-    <p style="font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0;">Published: July 2026</p>
-    <p style="color: #d4d4d8; margin-bottom: 15px;"> A quick breakdown of the technology behind Quick Response codes and creative ways you can use them to drive traffic. </p>
-    <a href="what-is-a-qr-code.html" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Read Full Article &rarr;</a>
-</article>
+            <!-- Card 5: How to Compress Images (Original) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Image Optimization</div>
+                    <h3>How to Compress Images Without Losing Quality</h3>
+                    <p>Discover the secrets of smart web graphics. Reduce file weights dramatically while keeping your visual boundaries sharp and pristine.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">June 2026</span>
+                    <a href="how-to-compress-images.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
 
-<!-- ARTICLE ENTRY #6 -->
-<article style="margin-bottom: 45px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 30px;">
-    <h3 class="article-title" style="font-size: 1.6rem; margin: 0 0 10px 0;">
-        <a href="how-to-count-words-fast.html">Why Accurate Word Counting Matters for Writers and SEOs</a>
-    </h3>
-    <p style="font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0;">Published: July 2026</p>
-    <p style="color: #d4d4d8; margin-bottom: 15px;"> From meeting assignments to hit target lengths for Google search engine optimization, see why an accurate counter tool is essential. </p>
-    <a href="how-to-count-words-fast.html" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Read Full Article &rarr;</a>
-</article>
+            <!-- Card 6: Video Format Guide (Original) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Video Formats</div>
+                    <h3>MP4 vs WebM vs MKV: Ultimate Video File Guide</h3>
+                    <p>Not all video file wrappers behave the same. Uncover which encoding formats run perfectly in modern web browsers without lag.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">June 2026</span>
+                    <a href="video-format-guide.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
 
-        
+            <!-- Card 7: Audio Bitrate (Original) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Audio Engineering</div>
+                    <h3>What is Audio Bitrate? Kbps and Sound Quality Explained</h3>
+                    <p>Demystifying sample rates and bit depths. Learn the sweet spot for exporting MP3 and WAV files for streaming vs archiving.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">May 2026</span>
+                    <a href="audio-bitrate-explained.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Card 8: Importance of Word Count (Original) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">SEO & Content</div>
+                    <h3>Does Word Count Really Matter for Modern Search Engine SEO?</h3>
+                    <p>We analyze whether search spiders prioritize massive long-form texts or favor fast, highly structured technical summaries.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">May 2026</span>
+                    <a href="importance-of-word-count.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Card 9: What is a QR Code (Original) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Tech Protocols</div>
+                    <h3>Behind the Matrix: How Do QR Codes Work?</h3>
+                    <p>Take a peek beneath the pattern grid. Explore the math, structural alignment boxes, and data recovery standards behind modern barcodes.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">April 2026</span>
+                    <a href="what-is-a-qr-code.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Card 10: Compression Guide (Original) -->
+            <article class="blog-card">
+                <div>
+                    <div class="category">Data Science</div>
+                    <h3>The Mechanics of Lossless vs Lossy Compression</h3>
+                    <p>Understanding the core computer science concepts behind shrinking massive data sets without destroying binary integrity.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="date">April 2026</span>
+                    <a href="ultimate-guide-to-file-compression.html" class="read-link">Read Article &rarr;</a>
+                </div>
+            </article>
+
+        </main>
     </div>
-
-    <!-- 3. FOOTER -->
-    <footer style="max-width:850px; margin:auto; padding:20px 20px 60px 20px; text-align: center;"> 
-        <div style="border-top:1px solid rgba(212, 175, 55, 0.15); padding-top: 30px;">
-            <a href="about.html">About Us</a> |
-            <a href="contact.html">Contact Us</a> |
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms & Conditions</a>
-        </div>
-        <div class="footer-text">AdSense-ready platform • Premium Layout Engine</div>
-    </footer>
-
 </body>
 </html>
