@@ -341,6 +341,23 @@ if ('serviceWorker' in navigator) {
 </script>
 <body>
 
+<button id="installBtn" style="
+display:none;
+position:fixed;
+bottom:20px;
+right:20px;
+padding:12px 20px;
+background:#00d4ff;
+color:black;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+z-index:9999;">
+📱 Install App
+</button>
+
 <!-- 1. HEADER (With Added ID and Transition Styles for Scroll Auto-Hide) -->
 <header id="dynamicLuxuryHeader" style="position:sticky; top:0; z-index:100; padding:20px 20px; text-align:center; background:rgba(15, 15, 17, 0.85); backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); border-bottom: 1px solid rgba(212, 175, 55, 0.15); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);">
     <h1 style="margin:0; font-size: 1.7rem;" class="main-title">UNIVERSAL CONVERTER PRO</h1>
