@@ -334,6 +334,11 @@ footer ul li::before {
 }
 </style>
 </head>
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('sw.js');
+}
+</script>
 <body>
 
 <!-- 1. HEADER (With Added ID and Transition Styles for Scroll Auto-Hide) -->
