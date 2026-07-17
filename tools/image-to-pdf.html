@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PDF Compiler - Universal Converter Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght=0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; font-family: 'Montserrat', sans-serif; color: #f4f4f5;
+            background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%); min-height: 100vh;
+        }
+        h2, h3 { font-family: 'Playfair Display', serif; color: #d4af37; font-weight: 400; }
+        .container { max-width: 800px; margin: auto; padding: 40px 20px; }
+        .back-link { display: inline-block; color: #a1a1aa; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; }
+        .card {
+            background: rgba(22, 22, 25, 0.8); padding: 45px 35px; border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+        }
+        .upload-zone {
+            border: 2px dashed rgba(212, 175, 55, 0.25); border-radius: 8px; padding: 40px 20px;
+            text-align: center; background: rgba(0,0,0,0.2); cursor: pointer; margin-bottom: 25px;
+        }
+        .preview-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px; }
+        .preview-item { border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 5px; background: #0a0a0b; position: relative; }
+        .preview-item img { width: 100%; height: 100px; object-fit: cover; border-radius: 4px; }
+        button {
+            background: linear-gradient(135deg, #c5a880 0%, #a88960 100%); color: #0a0a0b;
+            font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.5px; font-size: 11px; padding: 15px; border: none; border-radius: 6px; width: 100%; cursor: pointer;
+        }
+        .privacy-box { background: rgba(212, 175, 55, 0.03); border-left: 3px solid #d4af37; padding: 15px; margin: 25px 0; border-radius: 0 6px 6px 0; }
+        .privacy-box p { margin: 0; font-size: 11px; color: #c5a880; }
+        .article-section { margin-top: 40px; border-top: 1px solid rgba(212, 175, 55, 0.15); padding-top: 30px; }
+        .article-section p { color: #a1a1aa; font-size: 13px; }
+        .footer-links a { color: #c5a880; text-decoration: none; margin: 0 10px; font-size: 12px; }
+
+        /* Print system styles to seamlessly convert DOM vectors to PDF */
+        @media print {
+            body * { display: none !important; }
+            #printArea, #printArea * { display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            .page-break { page-break-after: always; break-after: page; display: block !important; }
+            #printArea img { max-width: 100% !important; height: auto !important; margin-bottom: 0 !important; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../index.html" class="back-link">&larr; Return to Central Hub</a>
+    <div class="card">
+        <h2 style="text-align:center; margin-top:0; color:#fff;">IMAGE TO PDF COMPILER</h2>
+        <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Document Vector Space Compiler</p>
+        
+        <div class="upload-zone" onclick="document.getElementById('imageFiles').click()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+            <p>Select Images (.jpg, .png, .webp)</p>
+            <input type="file" id="imageFiles" accept="image/*" multiple onchange="assemblePreviews(this)">
+        </div>
+
+        <div class="preview-matrix" id="previewContainer"></div>
+        <button onclick="compilePdfDocument()">Compile and Export PDF Matrix</button>
+
+        <div class="privacy-box">
+            <p><strong>🔒 Local Document Bounds:</strong> Spatial pixel rendering stays constrained within the boundaries of the user's active viewport interface. Content structural vectors are never stored or tracked.</p>
+        </div>
+
+        <div class="article-section">
+            <h3>Vector Boxing and Portable Document Conversions</h3>
+            <p>Converting multi-layered image assets into standard structural layout frameworks requires pixel preservation techniques. This client-side compiler cleanly organizes separate image blocks into high-density print wrappers. This structural mapping happens instantly in local memory, shielding private identity documents from cloud scraping channels.</p>
+        </div>
+
+        <hr style="border:0; height:1px; background:linear-gradient(to right, transparent, rgba(212,175,55,0.2), transparent); margin:40px 0;">
+        <div class="footer-links" style="text-align:center;">
+            <a href="../about.html">About Us</a> | <a href="../contact.html">Contact Us</a> | <a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms & Conditions</a>
+        </div>
+        <p style="text-align:center; font-size:11px; color:#52525b; margin-top:15px;">&copy; 2026 Universal Converter Pro. All rights reserved.</p>
+    </div>
+</div>
+
+<div id="printArea" style="display:none;"></div>
+
+<script>
+    let rawImagesArray = [];
+
+    function assemblePreviews(input) {
+        const container = document.getElementById('previewContainer');
+        const printArea = document.getElementById('printArea');
+        container.innerHTML = ""; printArea.innerHTML = "";
+        rawImagesArray = Array.from(input.files);
+
+        rawImagesArray.forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const item = document.createElement('div');
+                item.className = 'preview-item';
+                item.innerHTML = `<img src="${e.target.result}">`;
+                container.appendChild(item);
+
+                const printImg = document.createElement('img');
+                printImg.src = e.target.result;
+                printImg.className = 'page-break';
+                printArea.appendChild(printImg);
+            }
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function compilePdfDocument() {
+        if(rawImagesArray.length === 0) { alert("Matrix Empty: Inject image assets before attempting compilation."); return; }
+        // Triggers the native browser print matrix interface allowing direct local conversion to PDF
+        window.print();
+    }
+</script>
+</body>
+</html>
