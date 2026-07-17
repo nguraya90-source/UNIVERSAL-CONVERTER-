@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video to Audio Extractor - Universal Converter Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght=0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes luxuryEntrance { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; font-family: 'Montserrat', sans-serif; color: #f4f4f5;
+            background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%);
+            min-height: 100vh; letter-spacing: 0.5px; line-height: 1.7;
+        }
+        h2, h3 { font-family: 'Playfair Display', serif; color: #d4af37; font-weight: 400; }
+        .container { max-width: 800px; margin: auto; padding: 40px 20px; animation: luxuryEntrance 0.5s cubic-bezier(0.25, 1, 0.5, 1) both; }
+        .back-link { display: inline-block; color: #a1a1aa; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; transition: color 0.2s; }
+        .back-link:hover { color: #d4af37; }
+        .card {
+            background: rgba(22, 22, 25, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 45px 35px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+        }
+        .upload-zone {
+            border: 2px dashed rgba(212, 175, 55, 0.25); border-radius: 8px; padding: 40px 20px;
+            text-align: center; background: rgba(0,0,0,0.2); cursor: pointer; transition: border-color 0.2s; margin-bottom: 25px;
+        }
+        .upload-zone:hover { border-color: #d4af37; }
+        .upload-zone p { margin: 10px 0 0 0; font-size: 13px; color: #a1a1aa; }
+        input[type="file"] { display: none; }
+        .progress-container { display: none; margin: 25px 0; text-align: center; }
+        .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-top: 12px; }
+        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #c5a880, #d4af37); transition: width 0.2s linear; }
+        .download-btn {
+            display: none; background: linear-gradient(135deg, #c5a880 0%, #a88960 100%); color: #0a0a0b;
+            font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.5px; font-size: 11px; padding: 15px; border: none; border-radius: 6px;
+            width: 100%; cursor: pointer; text-align: center; text-decoration: none; margin-top: 10px;
+        }
+        .alert-note { font-size: 11px; color: #a1a1aa; margin-top: 5px; display: block; }
+        .privacy-box { background: rgba(212, 175, 55, 0.03); border-left: 3px solid #d4af37; padding: 15px; margin: 25px 0; border-radius: 0 6px 6px 0; }
+        .privacy-box p { margin: 0; font-size: 11px; color: #c5a880; }
+        .article-section { margin-top: 40px; border-top: 1px solid rgba(212, 175, 55, 0.15); padding-top: 30px; }
+        .article-section p { color: #a1a1aa; font-size: 13px; }
+        .footer-links a { color: #c5a880; text-decoration: none; margin: 0 10px; font-size: 12px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../index.html" class="back-link">&larr; Return to Central Hub</a>
+    <div class="card">
+        <h2 style="text-align:center; margin-top:0; color:#fff;">VIDEO TO AUDIO EXTRACTOR</h2>
+        <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Resilient Client-Side Sound Track Extractor</p>
+        
+        <div class="upload-zone" onclick="document.getElementById('videoFile').click()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><path d="M23 7a2 2 0 0 0-2.45-1.45L16 7V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2l4.55 1.45A2 2 0 0 0 23 17V7z"/></svg>
+            <p id="uploadPrompt">Select Target Media Source (.mp4, .webm, .mov)</p>
+            <span class="alert-note">Recommended: Clip payloads under 150MB for optimized browser thread execution</span>
+            <input type="file" id="videoFile" accept="video/*" onchange="handleResilientDemux(this)">
+        </div>
+
+        <div class="progress-container" id="statusBox">
+            <span id="statusLabel" style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#c5a880;">Reading Media Array...</span>
+            <div class="progress-bar"><div class="progress-fill" id="progressBarFill"></div></div>
+        </div>
+
+        <a id="downloadLink" class="download-btn">Export Uncompressed Master (.wav)</a>
+
+        <div class="privacy-box">
+            <p><strong>🔒 Accelerated Memory Isolation:</strong> Processing executes in separate micro-tasks to prevent web view crashes. No media data packets escape to external analytics servers.</p>
+        </div>
+
+        <div class="article-section">
+            <h3>PCM Sound Vector Processing and Offline Extraction Bounds</h3>
+            <p>Isolating high-fidelity audio streams from dynamic video containers requires safe, step-by-step memory allocation. This upgraded engine safely loads the target file, initializes an isolated browser decoding pipeline, and restructures the output straight into standard PCM containers. Processing files completely offline keeps your data private and secure.</p>
+        </div>
+
+        <hr style="border:0; height:1px; background:linear-gradient(to right, transparent, rgba(212,175,55,0.2), transparent); margin:40px 0;">
+        <div class="footer-links" style="text-align:center;">
+            <a href="../about.html">About Us</a> | <a href="../contact.html">Contact Us</a> | <a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms & Conditions</a>
+        </div>
+        <p style="text-align:center; font-size:11px; color:#52525b; margin-top:15px;">&copy; 2026 Universal Converter Pro. All rights reserved.</p>
+    </div>
+</div>
+
+<script>
+    async function handleResilientDemux(input) {
+        const file = input.files[0];
+        if(!file) return;
+        
+        const statusBox = document.getElementById('statusBox');
+        const statusLabel = document.getElementById('statusLabel');
+        const fill = document.getElementById('progressBarFill');
+        const dBtn = document.getElementById('downloadLink');
+        
+        statusBox.style.display = 'block';
+        dBtn.style.display = 'none';
+        fill.style.width = '15%';
+        statusLabel.innerText = "Staging local binary arrays...";
+
+        // Use standard or webkit prefixes based on the user's browser engine
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) {
+            alert("Engine Error: Your current browser configuration lacks support for the Web Audio API.");
+            return;
+        }
+        
+        const audioCtx = new AudioContextClass();
+        const fileReader = new FileReader();
+        
+        fileReader.onload = async function(e) {
+            fill.style.width = '40%';
+            statusLabel.innerText = "Parsing hardware audio trackers...";
+            
+            // Brief timeout prevents the browser thread from locking up during heavy allocation passes
+            setTimeout(async () => {
+                try {
+                    const audioBuffer = await audioCtx.decodeAudioData(e.target.result);
+                    fill.style.width = '75%';
+                    statusLabel.innerText = "Constructing structural WAV matrix...";
+                    
+                    setTimeout(() => {
+                        const wavBlob = buildOptimizedWav(audioBuffer);
+                        const url = URL.createObjectURL(wavBlob);
+                        
+                        dBtn.href = url;
+                        dBtn.download = file.name.substring(0, file.name.lastIndexOf('.')) + '_master.wav';
+                        dBtn.style.display = 'block';
+                        
+                        fill.style.width = '100%';
+                        statusLabel.innerText = "Extraction Finished Successfully.";
+                    }, 50);
+                    
+                } catch(err) {
+                    alert("Extraction Failed: The browser runtime ran out of memory or could not decode this media type. Try using a shorter or smaller video clip.");
+                    statusBox.style.display = 'none';
+                }
+            }, 50);
+        };
+        
+        fileReader.readAsArrayBuffer(file);
+    }
+
+    // High-performance interleaved WAV wrapper assembler
+    function buildOptimizedWav(buffer) {
+        let numOfChan = buffer.numberOfChannels,
+            sampleRate = buffer.sampleRate,
+            format = 1, // Uncompressed PCM
+            bitDepth = 16,
+            result;
+        
+        let resultBuffer;
+        if (numOfChan === 2) {
+            resultBuffer = interleaveChannels(buffer.getChannelData(0), buffer.getChannelData(1));
+        } else {
+            resultBuffer = buffer.getChannelData(0); // Fall back to mono mapping if single track layout detected
+        }
+        
+        let bufferLength = resultBuffer.length * 2;
+        let headerBuffer = new ArrayBuffer(44);
+        let view = new DataView(headerBuffer);
+        
+        // RIFF structural identifier chunks
+        writeString(view, 0, 'RIFF');
+        view.setUint32(4, 36 + bufferLength, true);
+        writeString(view, 8, 'WAVE');
+        writeString(view, 12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, format, true);
+        view.setUint16(22, numOfChan, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * numOfChan * (bitDepth / 8), true);
+        view.setUint16(32, numOfChan * (bitDepth / 8), true);
+        view.setUint16(34, bitDepth, true);
+        writeString(view, 36, 'data');
+        view.setUint32(40, bufferLength, true);
+        
+        let pcmData = new Int16Array(resultBuffer.length);
+        for (let i = 0; i < resultBuffer.length; i++) {
+            let s = Math.max(-1, Math.min(1, resultBuffer[i]));
+            pcmData[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+        }
+        
+        return new Blob([headerBuffer, pcmData], { type: 'audio/wav' });
+    }
+
+    function interleaveChannels(inputL, inputR) {
+        let length = inputL.length + inputR.length;
+        let result = new Float32Array(length);
+        let index = 0, inputIndex = 0;
+        while (index < length) {
+            result[index++] = inputL[inputIndex];
+            result[index++] = inputR[inputIndex];
+            inputIndex++;
+        }
+        return result;
+    }
+
+    function writeString(view, offset, string) {
+        for (let i = 0; i < string.length; i++) {
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    }
+</script>
+</body>
+</html>
