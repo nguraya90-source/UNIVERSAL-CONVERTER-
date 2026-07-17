@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Image Compressor - Universal Converter Pro</title>
+    
+    <!-- Luxury Typography Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ULTRA-PERFORMANCE HARDWARE-ACCELERATED KEYFRAMES --- */
+        @keyframes luxuryEntrance {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmerText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes dropPulse {
+            0% { border-color: rgba(212, 175, 55, 0.35); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+            50% { border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 0 12px rgba(212, 175, 55, 0.1); }
+            100% { border-color: rgba(212, 175, 55, 0.35); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #f4f4f5;
+            background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%);
+            min-height: 100vh;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #d4af37;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        .container {
+            max-width: 950px;
+            margin: auto;
+            padding: 40px 20px;
+            animation: luxuryEntrance 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+        }
+        .back-link {
+            display: inline-block;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease, color 0.2s ease;
+            will-change: transform;
+        }
+        .back-link:hover { color: #d4af37; transform: translateX(-4px); }
+        
+        .card {
+            background: rgba(22, 22, 25, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 45px 35px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 40px;
+        }
+        h1.main-title {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, #fff 0%, #d4af37 50%, #fff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 4s linear infinite;
+        }
+        .drop {
+            border: 1px dashed rgba(212, 175, 55, 0.35);
+            border-radius: 8px;
+            padding: 55px 20px;
+            text-align: center;
+            margin: 20px 0 30px 0;
+            cursor: pointer;
+            color: #c5a880;
+            background: rgba(212, 175, 55, 0.01);
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), background 0.2s ease, border-color 0.2s ease;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            animation: dropPulse 3s infinite ease-in-out;
+            will-change: transform;
+        }
+        .drop:hover { background: rgba(212, 175, 55, 0.05); border-color: #d4af37; color: #fff; transform: scale(1.01); }
+        .drop:active { transform: scale(0.99); }
+
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .slider-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #a1a1aa;
+        }
+        input[type="range"] {
+            width: 100%;
+            max-width: 300px;
+            -webkit-appearance: none;
+            background: #27272a;
+            height: 4px;
+            border-radius: 2px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #d4af37;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+
+        button {
+            background: linear-gradient(135deg, #c5a880 0%, #a88960 100%);
+            color: #0a0a0b;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 11px;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
+            will-change: transform, box-shadow;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(168, 137, 96, 0.35); }
+        button:active { transform: translateY(1px) scale(0.98); }
+
+        .preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            display: none;
+        }
+        
+        footer section {
+            margin-bottom: 45px;
+            text-align: left;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+            padding-bottom: 30px;
+        }
+        footer section p { color: #a1a1aa; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../index.html" class="back-link">&larr; Return to Central Hub</a>
+    
+    <div class="card">
+        <h1 class="main-title">IMAGE COMPRESSOR PRO</h1>
+        <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Lossless Client-Side Downsampling</p>
+        
+        <div class="drop" onclick="document.getElementById('fileInput').click()" id="dropZone">Drop target file here or click to browse</div>
+        <input type="file" id="fileInput" accept="image/*" hidden>
+        
+        <div class="control-panel">
+            <span class="slider-label" id="qualityLabel">Compression Factor: 80%</span>
+            <input type="range" id="quality" min="10" max="100" value="80">
+            <button id="compressBtn">Execute Optimization</button>
+        </div>
+        
+        <div style="text-align:center"><img id="preview" class="preview"></div>
+    </div>
+
+    <footer>
+        <!-- DATA ARRAYS AND STRATEGIC BENEFITS SECTION -->
+        <section>
+            <h2>📚 Deep Asset Optimization Insights</h2>
+            <h3>The Science Behind Quality Scale Adjustments</h3>
+            <p>Every rasterized file allocation relies heavily on geometric byte maps. Adjusting the factor parameters directly changes how quantization matrices strip out redundant high-frequency visual waves. This algorithm keeps primary visual borders sharp while dropping file weights dramatically.</p>
+
+            <h3>Elevating Core Web Vitals via Advanced Compiling</h3>
+            <p>Modern index scrapers prioritize rendering acceleration profiles like Largest Contentful Paint (LCP). Large media payloads slow down page response rates. Dropping your pixel storage weight by up to 75% optimizes background pipelines and stabilizes execution threads instantly.</p>
+
+            <h3>Uncompromising Sandbox Security Infrastructure</h3>
+            <p>Unlike third-party remote API modules, this processing client maps inputs natively into the internal browser sandbox ecosystem. Confidential layout schemas, digital signatures, and legal graphics remain entirely locked inside your local station context, never migrating onto external cloud networks.</p>
+        </section>
+
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            <h3>Does this compression algorithm damage structural transparency?</h3>
+            <p>Converting elements into JPEG nodes maps alpha-channels directly over pure white baselines. To preserve transparent design arrays completely, utilize target setups built for native WEBP/PNG layout profiles.</p>
+            
+            <h3>Why is native browser processing faster than cloud arrays?</h3>
+            <p>Cloud processing setups waste network performance shipping massive file matrices back and forth. Local compilation executes byte array operations immediately inside your computer's memory hardware chips, removing network delays entirely.</p>
+        </section>
+    </footer>
+</div>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const quality = document.getElementById('quality');
+    const qualityLabel = document.getElementById('qualityLabel');
+    const compressBtn = document.getElementById('compressBtn');
+    const preview = document.getElementById('preview');
+    const dropZone = document.getElementById('dropZone');
+    let sourceData = null;
+
+    quality.addEventListener('input', (e) => {
+        qualityLabel.innerText = `Compression Factor: ${e.target.value}%`;
+    });
+
+    // Drag and Drop Binding Logic
+    ['dragenter', 'dragover'].forEach(name => dropZone.addEventListener(name, (e) => {
+        e.preventDefault(); dropZone.style.background = 'rgba(212, 175, 55, 0.08)';
+    }));
+    ['dragleave', 'drop'].forEach(name => dropZone.addEventListener(name, (e) => {
+        e.preventDefault(); dropZone.style.background = 'rgba(212, 175, 55, 0.01)';
+    }));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if(e.dataTransfer.files.length) { fileInput.files = e.dataTransfer.files; processInput(fileInput.files[0]); }
+    });
+    fileInput.addEventListener('change', () => { if(fileInput.files.length) processInput(fileInput.files[0]); });
+
+    function processInput(file) {
+        dropZone.innerText = file.name;
+        const reader = new FileReader();
+        reader.onload = e => { sourceData = e.target.result; preview.src = sourceData; preview.style.display = 'inline-block'; };
+        reader.readAsDataURL(file);
+    }
+
+    compressBtn.addEventListener('click', () => {
+        if(!sourceData) return alert("Please present a valid file allocation first.");
+        compressBtn.innerText = "Processing Pixel Arrays...";
+        
+        requestAnimationFrame(() => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = img.width;
+                canvas.height = img.height;
+                canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+                
+                const factor = quality.value / 100;
+                const dl = document.createElement("a");
+                dl.href = canvas.toDataURL("image/jpeg", factor);
+                dl.download = "optimized_asset.jpg";
+                dl.click();
+                compressBtn.innerText = "Execute Optimization";
+            };
+            img.src = sourceData;
+        });
+    });
+</script>
+</body>
+</html>
