@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google AdSense - UNTOUCHED -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9942315934378002"
+crossorigin="anonymous"></script>
+<!-- Google Site Verification - UNTOUCHED -->
+<meta name="google-site-verification" content="7c4V7dZFz1EHSVGKVypKVfYRtf8xz4GnHdVEGGVo3yk" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://quge5.com/88/tag.min.js" data-zone="259999" async data-cfasync="false"></script>
+<title>Universal Converter Pro</title>
+<link rel="manifest" href="manifest.json">
+
+<!-- Luxury Typography Imports -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<!-- Third-Party Execution Engines (Only Base Engine Dependency Kept) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+/* --- ULTRA-PERFORMANCE HARDWARE-ACCELERATED KEYFRAMES --- */
+@keyframes luxuryEntrance {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes headerSlideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes shimmerText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes gridCascade {
+    from { opacity: 0; transform: scale(0.96) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes dropPulse {
+    0% { border-color: rgba(212, 175, 55, 0.35); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    50% { border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 0 12px rgba(212, 175, 55, 0.1); }
+    100% { border-color: rgba(212, 175, 55, 0.35); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #f4f4f5;
+    background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%);
+    min-height: 100vh;
+    letter-spacing: 0.5px;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: #d4af37;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 40px 20px;
+    animation: luxuryEntrance 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+.card {
+    background: rgba(22, 22, 25, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 45px 35px;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+    margin-bottom: 40px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: box-shadow, border-color;
+}
+.card:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 35px 70px -10px rgba(212, 175, 55, 0.05), 0 30px 60px -15px rgba(0, 0, 0, 0.9);
+}
+
+h1.main-title {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, #fff 0%, #d4af37 50%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerText 4s linear infinite;
+}
+p.subtitle {
+    text-align: center;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    color: #a1a1aa;
+    margin-bottom: 0px;
+}
+.drop {
+    border: 1px dashed rgba(212, 175, 55, 0.35);
+    border-radius: 8px;
+    padding: 55px 20px;
+    text-align: center;
+    margin: 20px 0 30px 0;
+    cursor: pointer;
+    color: #c5a880;
+    background: rgba(212, 175, 55, 0.01);
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    animation: dropPulse 3s infinite ease-in-out;
+    will-change: transform, background, border-color;
+}
+.drop:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: #d4af37;
+    color: #fff;
+    transform: scale(1.01);
+}
+.drop:active {
+    transform: scale(0.99);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
+    margin: 40px 0;
+}
+
+button, .action-btn {
+    background: linear-gradient(135deg, #c5a880 0%, #a88960 100%);
+    color: #0a0a0b;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    margin: 8px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease, background 0.2s ease;
+    display: inline-block;
+    text-decoration: none;
+    will-change: transform, box-shadow;
+}
+button:hover, .action-btn:hover {
+    background: linear-gradient(135deg, #e6d5b8 0%, #c5a880 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(168, 137, 96, 0.35);
+}
+button:active, .action-btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+button:disabled {
+    background: #27272a !important;
+    color: #71717a !important;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+select {
+    padding: 13px 24px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: #141416;
+    color: #f4f4f5;
+    border-radius: 6px;
+    margin: 8px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    will-change: transform;
+}
+select:focus {
+    border-color: #d4af37;
+    transform: scale(1.02);
+}
+
+/* Dynamic Performance Tools Grid */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 30px 0 45px 0;
+}
+.tools-grid button {
+    background: rgba(22, 22, 25, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 8px;
+    padding: 18px 15px;
+    color: #a1a1aa;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    margin: 0;
+    letter-spacing: 0.5px;
+    animation: gridCascade 0.4s cubic-bezier(0.25, 1, 0.5, 1) both;
+    will-change: transform, border-color, background;
+}
+.tools-grid button:hover {
+    color: #d4af37;
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.05);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+.tools-grid button:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+header nav button {
+    background: none;
+    border: none;
+    margin: 0 15px;
+    color: #a1a1aa;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    padding: 0;
+    will-change: transform, color;
+}
+header nav button:hover {
+    color: #d4af37;
+    background: none;
+    box-shadow: none;
+    transform: translateY(-1px);
+}
+header nav button:active {
+    transform: translateY(1px);
+}
+
+.preview {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 8px;
+    margin-top: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    animation: luxuryEntrance 0.3s ease-out;
+}
+
+footer section {
+    margin-bottom: 45px;
+    text-align: left;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+    padding-bottom: 30px;
+}
+footer section p {
+    color: #a1a1aa;
+    font-size: 14px;
+}
+.footer-nav-links a {
+    color: #c5a880;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 13px;
+    margin: 0 10px;
+}
+.footer-nav-links a:hover {
+    color: #fff;
+}
+
+/* Fast Stagger Engine delays for Grid Components */
+.tools-grid button:nth-child(1)  { animation-delay: 0.02s; }
+.tools-grid button:nth-child(2)  { animation-delay: 0.04s; }
+.tools-grid button:nth-child(3)  { animation-delay: 0.06s; }
+.tools-grid button:nth-child(4)  { animation-delay: 0.08s; }
+.tools-grid button:nth-child(5)  { animation-delay: 0.10s; }
+.tools-grid button:nth-child(6)  { animation-delay: 0.12s; }
+.tools-grid button:nth-child(7)  { animation-delay: 0.14s; }
+.tools-grid button:nth-child(8)  { animation-delay: 0.16s; }
+.tools-grid button:nth-child(9)  { animation-delay: 0.18s; }
+.tools-grid button:nth-child(10) { animation-delay: 0.20s; }
+.tools-grid button:nth-child(11) { animation-delay: 0.22s; }
+.tools-grid button:nth-child(12) { animation-delay: 0.24s; }
+
+.article-card {
+    background: rgba(22, 22, 25, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    padding: 30px;
+    border-radius: 8px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+    will-change: transform, border-color;
+}
+.article-card:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+}
+</style>
+<script src="https://quge5.com/88/tag.min.js" data-zone="259999" async data-cfasync="false"></script>
+</head>
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('sw.js');
+}
+</script>
+<body>
+
+<button id="installBtn" style="
+display:none;
+position:fixed;
+bottom:20px;
+right:20px;
+padding:12px 20px;
+background:#d4af37;
+color:black;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+z-index:9999;
+transition: transform 0.2s ease;">
+📱 Install App
+</button>
+
+<!-- 1. HEADER -->
+<header id="dynamicLuxuryHeader" style="position:sticky; top:0; z-index:100; padding:20px 20px; text-align:center; background:rgba(15, 15, 17, 0.85); backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); border-bottom: 1px solid rgba(212, 175, 55, 0.15); transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); animation: headerSlideDown 0.4s ease-out both;">
+    <h1 style="margin:0; font-size: 1.7rem;" class="main-title">UNIVERSAL CONVERTER PRO</h1>
+    <p style="margin: 5px 0 0 0;" class="subtitle">Fast • Free • Secure File Conversion</p>
+
+<!-- 2. NAVIGATION MENU -->
+    <nav style="margin-top:15px;">
+        <button onclick="document.getElementById('panel-home').scrollIntoView({behavior: 'smooth'})">Home</button>
+        <button onclick="window.location.href='blog.html'">Blog</button>
+        <button onclick="window.location.href='tools/video-to-audio.html'">Video to Audio</button>
+        <button onclick="window.location.href='tools/image-compressor.html'">Compressor</button>
+        <button onclick="window.location.href='tools/image-resizer.html'">Resizer</button>
+        <button onclick="window.location.href='tools/qr-generator.html'">QR Tool</button>
+        <button onclick="window.location.href='tools/word-counter.html'">Word Counter</button>
+    </nav>
+</header>
+
+<div class="container">
+
+    <!-- 3. ALL TOOLS GRID -->
+    <h2 style="text-align:center; font-size: 1.4rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">🛠️ Premium Utilities Grid</h2>
+    <div class="tools-grid">
+        <button onclick="document.getElementById('panel-home').scrollIntoView({behavior: 'smooth'})">🖼️ Base Conversion Engine</button>
+        <button onclick="window.location.href='tools/video-to-audio.html'">🎥 Video to Audio</button>
+        <button onclick="window.location.href='tools/image-compressor.html'">🗜️ Image Compressor</button>
+        <button onclick="window.location.href='tools/image-resizer.html'">📏 Image Resizer</button>
+        <button onclick="window.location.href='tools/jpg-to-png.html'">🖼️ JPG to PNG Suite</button>
+        <button onclick="window.location.href='tools/png-to-jpg.html'">🖼️ PNG to JPG Suite</button>
+        <button onclick="window.location.href='tools/image-to-pdf.html'">📄 Image to PDF Engine</button>
+        <button onclick="window.location.href='tools/pdf-to-jpg.html'">🖼️ PDF to JPG Engine</button>
+        <button onclick="window.location.href='tools/qr-generator.html'">📱 Luxury QR Generator</button>
+        <button onclick="window.location.href='tools/password-generator.html'">🔐 Secure Password</button>
+        <button onclick="window.location.href='tools/word-counter.html'">📝 Word Counter</button>
+        <button onclick="window.location.href='tools/age-calculator.html'">🎂 Age Calculator</button>
+    </div>
+
+    <!-- MAIN CONVERSION WORKSPACE CONTAINER -->
+    <div>
+        <!-- MODULE: BASE FILE ENGINE (HOME) -->
+        <div id="panel-home" class="card tool-panel" style="scroll-margin-top: 130px;">
+            <h2 style="text-align:center; margin-top:0; color:#fff;">File Processing Engine</h2>
+            <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Local Sandbox Environment</p>
+            <div class="drop" onclick="document.getElementById('fileInput').click()">Drop image here or browse files</div>
+            <input type="file" id="fileInput" accept="image/*" hidden onchange="handleBaseFile(this.files[0])">
+            <div style="text-align:center">
+                <select id="format">
+                    <option value="image/png">PNG Format</option>
+                    <option value="image/jpeg">JPG Format</option>
+                    <option value="image/webp">WEBP Format</option>
+                </select>
+                <button id="convertBtn" onclick="convertBaseImage()">Convert Image</button>
+                <button id="pdfBtn" onclick="baseImageToPdf()">Image → PDF</button>
+            </div>
+            <div style="text-align:center"><img id="preview" class="preview" style="display:none"></div>
+        </div>
+    </div>
+
+    <!-- SECTION: VISUAL FEATURED ARTICLES GRID -->
+    <section style="margin: 60px 0; padding: 10px 0;">
+        <h2 style="text-align: center; font-family: 'Playfair Display', serif; color: #d4af37; margin-bottom: 40px; font-size: 2rem;">Deep Dives & Insights</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto;">
+            <!-- Card 1 -->
+            <div class="article-card">
+                <span style="font-size: 11px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 2px;">Optimization</span>
+                <h3 style="font-family: 'Playfair Display', serif; color: #fff; margin: 10px 0; font-size: 1.4rem;">How to Compress Images Cleanly</h3>
+                <p style="color: #a1a1aa; font-size: 14px; line-height: 1.6;">Learn the delicate balance between lossy and lossless compression to maximize your web performance...</p>
+                <a href="how-to-compress-images.html" style="color: #d4af37; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-top: 15px; text-decoration: none;">Read Article &rarr;</a>
+            </div>
+            <!-- Card 2 -->
+            <div class="article-card">
+                <span style="font-size: 11px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 2px;">File Formats</span>
+                <h3 style="font-family: 'Playfair Display', serif; color: #fff; margin: 10px 0; font-size: 1.4rem;">PNG vs. JPG: The Real Differences</h3>
+                <p style="color: #a1a1aa; font-size: 14px; line-height: 1.6;">Stop using the wrong extensions. Discover when transparency beats raw compression layouts...</p>
+                <a href="png-vs-jpg-differences.html" style="color: #d4af37; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-top: 15px; text-decoration: none;">Read Article &rarr;</a>
+            </div>
+            <!-- Card 3 -->
+            <div class="article-card">
+                <span style="font-size: 11px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 2px;">Next-Gen Spec</span>
+                <h3 style="font-family: 'Playfair Display', serif; color: #fff; margin: 10px 0; font-size: 1.4rem;">The Structural Power of WebP</h3>
+                <p style="color: #a1a1aa; font-size: 14px; line-height: 1.6;">Unpack why Google’s next-gen ecosystem minimizes data overheads by up to 30% over legacy formats...</p>
+                <a href="power-of-webp.html" style="color: #d4af37; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-top: 15px; text-decoration: none;">Read Article &rarr;</a>
+            </div>
+            <!-- Card 4 -->
+            <div class="article-card">
+                <span style="font-size: 11px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 2px;">Cyber Security</span>
+                <h3 style="font-family: 'Playfair Display', serif; color: #fff; margin: 10px 0; font-size: 1.4rem;">Client-Side Processing Security</h3>
+                <p style="color: #a1a1aa; font-size: 14px; line-height: 1.6;">Examine how in-browser sandbox setups block tracking risks and keep your documents isolated locally...</p>
+                <a href="client-side-security.html" style="color: #d4af37; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-top: 15px; text-decoration: none;">Read Article &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer style="max-width:950px; margin:auto; padding:20px 20px 60px 20px;"> 
+    <!-- 8. STRATEGIC DIGITAL GUIDES -->
+    <section style="padding:10px 0;">
+        <h2 style="font-size: 1.8rem; border-left: 3px solid #d4af37; padding-left: 15px; margin-bottom: 30px;">📚 Strategic Digital Guides & Articles</h2>
+        <h3>How to Convert JPG to PNG</h3>
+        <p>JPG and PNG represent different graphical implementations. While JPG maximizes storage efficiency for digital photography, PNG provides uncompressed pixel clarity and full alpha-channel transparency structures. Convert JPG to PNG when you need transparency or improved image quality.</p>
+
+        <h3>PNG vs JPG: Dynamic Utility</h3>
+        <p>PNG offers better quality and transparency support, while JPG provides smaller file sizes. PNG is excellent for logos and graphics, while JPG works best for photographs.</p>
+
+        <h3>What Is WEBP Format?</h3>
+        <p>WEBP is a cutting-edge graphical framework designed by Google. It delivers unmatched byte efficiency while preserving intricate pixel values, significantly lowering data footprints and helping websites load faster.</p>
+
+        <h3>Benefits of Modern PDF Architecture</h3>
+        <p>PDF files ensure layout preservation irrespective of local device fonts, displays, or operating software versions. They are widely used for reports, documents, invoices, and premium presentations.</p>
+
+        <h3>How to Create a PDF from Images</h3>
+        <p>Creating a PDF from images allows multiple pictures to be combined into a single document. This is useful for sharing photos, scanned documents, and corporate portfolios.</p>
+
+        <h3>Best Image Formats for Websites</h3>
+        <p>WEBP is often the best choice for websites because it provides smaller file sizes. JPG is suitable for rich photographs, while PNG remains optimal for geometric graphics and transparent layout images.</p>
+
+        <h3>How Image Compression Works</h3>
+        <p>Image compression reduces file size while maintaining acceptable image quality. Smaller files help websites load faster, preserve server bandwidth, and improve overall user experience metrics.</p>
+
+        <h3>Why Mobile-Friendly Websites Matter</h3>
+        <p>Most internet users browse on mobile devices. A mobile-friendly website provides an uncompromising experience and dramatically improves performance and search engine evaluation indexes.</p>
+
+        <h3>Tips for Managing Digital Documents</h3>
+        <p>Organize assets into clear directory structures, use PDF format for secure distributed files, and consistently run local data routines to prevent sudden data loss.</p>
+
+        <h3>Common File Conversion Problems and Solutions</h3>
+        <p>Some files may experience compression artifacting during heavy conversion routines. Choosing high-fidelity target formats and ensuring premium raw source quality helps yield elite results.</p>
+
+        <h3>Elevating E-Commerce Conversion Rates with Next-Gen Rendering</h3>
+        <p>In modern digital commerce networks, every millisecond shaved off a payload delivery directly yields increased user engagement. Moving legacy JPEG product images to optimized WebP models dramatically decreases page abandonment metrics while keeping close-up texture detail crisp and professional.</p>
+
+        <h3>The Security Threshold: Why Local Sandbox File Rendering Matters</h3>
+        <p>Traditional cloud converters force users to upload vulnerable data arrays to external servers, risking visibility breaches. Localized JavaScript computing processes all conversions entirely inside your machine's sandbox buffer—guaranteeing that confidential assets never navigate across open data channels.</p>
+
+        <h3>Vectorization vs Rasterization: Maintaining High Contrast Document Quality</h3>
+        <p>When bundling physical elements into high-density PDF modules, ensuring proper scaling ratios protects small text typography from blurring. Using dedicated client-side alignment nodes wraps rasterized pixel grids into clean structural vectors, making documents legible across large presentation screens and professional document prints.</p>
+
+        <h3>The Rise of AVIF: Deciphering Next-Gen Image Standards</h3>
+        <p>AVIF is a cutting-edge open-source image format derived from keyframes of the AV1 video codec. It offers significantly better compression than WebP, JPEG, and PNG, allowing websites to display stunning 10-bit color depth with deep HDR support at a fraction of standard file sizes. Adopting modern image standards ensures your web portals remain highly competitive, lightning-fast, and visually elite.</p>
+
+        <h3>Metadata & Privacy: What Lies Hidden Inside Your Image Files</h3>
+        <p>Every photograph captured by modern smartphones and digital cameras contains hidden EXIF data blocks. This metadata stores exact GPS coordinates, local timestamps, camera hardware configurations, and sometimes even the device owner's details. Converting your files through local client-side processing engines naturally strips or rewrites these hidden tracking variables, securing your physical location and personal privacy before sharing assets online.</p>
+
+        <h3>Understanding Color Spaces: RGB, CMYK, and Web Calibration</h3>
+        <p>Color fidelity varies drastically depending on target media standards. Digital displays rely on the additive RGB (Red, Green, Blue) spectrum, while commercial physical printing layouts function inside the subtractive CMYK (Cyan, Magenta, Yellow, Black) environment. When converting file types for branding, aligning color profiles ensures your logos and photography look consistent from mobile screens to physical retail billboards.</p>
+
+        <h3>Lossless vs Lossy Compression: The Infinite Balancing Act</h3>
+        <p>Lossless compression (like PNG) shrinks raw image files without discarding a single pixel of data, preserving crisp visual geometry. Lossy compression (like JPEG) permanently strips away minor gradients and subtle color shades that are less perceptible to the human eye to achieve massive storage savings. Knowing when to choose pure fidelity over raw performance is the foundation of digital asset optimization.</p>
+
+        <h3>Why Responsive Layouts Demand Diverse Image Dimensions</h3>
+        <p>Modern web design relies on dynamic grid structures that change scale based on screen sizes. Loading a single, giant desktop image on a mobile device wastes valuable mobile bandwidth, while loading small assets on high-resolution displays causes severe pixelation. Programmatic image conversion and resizing allow developers to serve customized assets optimized for every screen size.</p>
+
+        <h3>The Structural Power of WebP</h3>
+        <p>Google’s modern WebP layout ecosystem sets a premier framework for lightweight performance optimization. By maintaining deep structural integration with advanced predictive pixel frame evaluation, WebP trims spatial byte sizes down by up to 30% over legacy JPEG configurations. This advanced design empowers server environments to serve asset libraries faster, optimizing data loadouts cleanly without losing visible rendering contrast.</p>
+
+        <h3>Client-Side Processing Security</h3>
+        <p>Standard cloud rendering options present acute vulnerabilities by demanding users upload digital assets onto distant servers. Processing documents client-side isolates calculation execution securely within your native browser hardware sandbox buffer. This client-centric computing paradigm effectively ensures that tracking scripts, remote monitors, and identity aggregators cannot track your confidential transaction details.</p>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section>
+        <h2>Frequently Asked Questions</h2>
+        <h3>Is this converter free?</h3>
+        <p>Yes, all structural modules remain open, ad-supported, and 100% cost-free for unlimited conversions.</p>
+        
+        <h3>Are my files secure?</h3>
+        <p>Your privacy is paramount. Files are compiled fully client-side inside your browser sandbox and are never uploaded, stored, or retained on an external server.</p>
+        
+        <h3>Can I access it via mobile?</h3>
+        <p>Yes, the responsive design scales smoothly across premium smartphone frameworks, offering flawless client-side processing on iOS and Android devices.</p>
+
+        <h3>What is the maximum file size I can upload?</h3>
+        <p>Since all processing occurs locally inside your browser's memory, there is no strict upload limit. However, for seamless processing and to prevent mobile browser memory crashes, we recommend files under 50MB.</p>
+
+        <h3>Does converting images reduce their original quality?</h3>
+        <p>Converting to lossless PNG maintains 100% pixel fidelity. When converting to JPEG or WebP, the engine applies subtle, high-grade lossy compression (95% quality rating) to dramatically reduce file sizes while keeping any quality loss imperceptible to the human eye.</p>
+
+        <h3>Do I need an internet connection to use this tool once it loads?</h3>
+        <p>No! Once this webpage is loaded in your browser tab, the conversion script runs entirely offline. You can convert images and compile PDFs without any active internet connection because the files never leave your device.</p>
+
+        <h3>Why does my PNG lose transparency when converting to JPG?</h3>
+        <p>The JPG image standard does not support alpha-channel transparency. When converting a transparent PNG to JPG, the transparent pixels are automatically rendered on a clean, solid white background layer.</p>
+
+        <h3>Is there a limit on how many files I can convert?</h3>
+        <p>Absolutely not. You can convert as many images and compile as many PDF documents as you need, without experiencing throttle limits, wait times, or usage caps.</p>
+
+        <h3>What happens to the EXIF data and metadata during conversion?</h3>
+        <p>By default, HTML5 canvas draw rendering strips device-specific metadata profiles (such as camera tracking codes, structural timestamps, and GPS tracking indicators) from the new image data array, delivering enhanced personal anonymity instantly.</p>
+
+        <h3>Why does the engine perform faster on secondary runs?</h3>
+        <p>Our infrastructure registers deep client execution caching via Service Worker blocks. Once initial dependency assets load into memory, recurring asset operations read straight from native device buffers.</p>
+
+        <h3>Can I process heavy multi-page vector documents into standalone images?</h3>
+        <p>This entry engine maps raw input pixel arrays directly. To isolate complex multi-layered print layouts or compile rich vectors, utilize the dedicated extensions inside our secondary premium sub-panels.</p>
+
+        <h3>Will this sandbox processing configuration function on legacy desktop software?</h3>
+        <p>The application layout adapts backwards natively down to Chromium 80 and Modern EcmaScript architectures. For elite runtime benchmarks, update your primary browser setup to its current stable build version.</p>
+    </section>
+
+    <!-- 10. ABOUT / CONTACT / PRIVACY / TERMS -->
+    <div class="footer-nav-links" style="border-top:1px solid rgba(212, 175, 55, 0.15); padding-top: 30px; text-align: center;">
+        <a href="about.html">About Us</a> |
+        <a href="contact.html">Contact Us</a> |
+        <a href="privacy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms & Conditions</a>
+    </div>
+
+    <p style="font-size: 13px; color: #52525b; letter-spacing: 1px; margin: 20px 0 0 0; text-align: center;">
+        &copy; 2026 <span style="color: #d4af37;">Universal Converter Pro</span>. All rights reserved.
+    </p>
+</footer>
+
+<script>
+// SMART HIDE HEADER CONTROLLER
+let lastScrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+    const header = document.getElementById("dynamicLuxuryHeader");
+    if (!header) return;
+    if (window.scrollY > lastScrollY && window.scrollY > 150) {
+        header.style.transform = "translateY(-100%)";
+    } else {
+        header.style.transform = "translateY(0)";
+    }
+    lastScrollY = window.scrollY;
+});
+
+// Drag and Drop Binding logic
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.drop').forEach(dropZone => {
+        const onclickAttr = dropZone.getAttribute('onclick');
+        if (!onclickAttr) return;
+        const match = onclickAttr.match(/document\.getElementById\(['"]([^'"]+)['"]\)/);
+        if (!match) return;
+        const inputId = match[1];
+        const fileInput = document.getElementById(inputId);
+        if (!fileInput) return;
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, e => { e.preventDefault(); e.stopPropagation(); }, false);
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.style.borderColor = '#d4af37';
+                dropZone.style.background = 'rgba(212, 175, 55, 0.08)';
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.style.borderColor = 'rgba(212, 175, 55, 0.35)';
+                dropZone.style.background = 'rgba(212, 175, 55, 0.01)';
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', e => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                const event = new Event('change', { bubbles: true });
+                fileInput.dispatchEvent(event);
+            }
+        }, false);
+    });
+});
+
+let baseImgData = null;
+
+// ===================================================
+// TOOL CORE MODULE: BASE HOME FILE PROCESSING ENGINE
+// ===================================================
+function handleBaseFile(file) {
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        baseImgData = e.target.result;
+        const prv = document.getElementById('preview');
+        prv.src = baseImgData;
+        prv.style.display = 'inline-block';
+    };
+    reader.readAsDataURL(file);
+}
+
+function convertBaseImage() {
+    if(!baseImgData) return alert("Upload an image asset first.");
+    const btn = document.getElementById('convertBtn');
+    btn.innerText = "Processing...";
+    
+    // Use requestAnimationFrame to let UI update before thread work
+    requestAnimationFrame(() => {
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.min(img.width, 3000);
+            canvas.height = Math.round((img.height * canvas.width) / img.width);
+            canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+            const format = document.getElementById("format").value;
+            const dl = document.createElement("a");
+            dl.href = canvas.toDataURL(format, 0.95);
+            dl.download = "converted." + format.split("/")[1];
+            dl.click();
+            btn.innerText = "Convert Image";
+        };
+        img.src = baseImgData;
+    });
+}
+
+function baseImageToPdf() {
+    if(!baseImgData) return alert("Upload an image asset first.");
+    const jsPDFEngine = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
+    if(!jsPDFEngine) return alert("Execution library loading failed.");
+    const img = new Image();
+    img.onload = () => {
+        const orientation = img.width > img.height ? 'l' : 'p';
+        const pdf = new jsPDFEngine({ orientation: orientation, unit: 'px', format: [img.width, img.height] });
+        pdf.addImage(baseImgData, 'JPEG', 0, 0, img.width, img.height);
+        pdf.save('document.pdf');
+    };
+    img.src = baseImgData;
+}
+
+// PWA HANDLER INTEGRATION
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.style.display = 'none';
+});
+</script>
+</body>
+</html>
