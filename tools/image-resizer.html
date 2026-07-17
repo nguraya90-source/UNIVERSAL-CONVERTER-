@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensional Image Resizer - Universal Converter Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght=0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes luxuryEntrance { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; color: #f4f4f5; background: radial-gradient(circle at center, #1b1b1d 0%, #070708 100%); min-height: 100vh; letter-spacing: 0.5px; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: #d4af37; font-weight: 400; }
+        .container { max-width: 900px; margin: auto; padding: 40px 20px; animation: luxuryEntrance 0.5s cubic-bezier(0.25, 1, 0.5, 1) both; }
+        .back-link { display: inline-block; color: #a1a1aa; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; transition: color 0.2s; }
+        .back-link:hover { color: #d4af37; }
+        .card { background: rgba(22, 22, 25, 0.8); padding: 45px 35px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8); }
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0; }
+        input[type="number"], input[type="file"] {
+            width: 100%; padding: 14px; background: #141416; border: 1px solid rgba(212, 175, 55, 0.25);
+            color: #fff; border-radius: 6px; outline: none; font-family: 'Montserrat', sans-serif;
+        }
+        input[type="number"]:focus { border-color: #d4af37; }
+        .checkbox-container { display: flex; align-items: center; gap: 10px; font-size: 12px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 25px; }
+        button {
+            background: linear-gradient(135deg, #c5a880 0%, #a88960 100%); color: #0a0a0b;
+            font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.5px; font-size: 11px; padding: 15px; border: none; border-radius: 6px; width: 100%; cursor: pointer;
+        }
+        
+        .article-section { margin-top: 40px; border-top: 1px solid rgba(212, 175, 55, 0.15); padding-top: 30px; }
+        .article-section h3 { color: #fff; font-size: 1.3rem; margin-top: 25px; }
+        .article-section p { color: #a1a1aa; font-size: 14px; line-height: 1.6; }
+        .privacy-box { background: rgba(212, 175, 55, 0.03); border-left: 3px solid #d4af37; padding: 15px; margin: 25px 0; border-radius: 0 6px 6px 0; }
+        .privacy-box p { margin: 0; font-size: 12px; color: #c5a880; }
+        .footer-links a { color: #c5a880; text-decoration: none; margin: 0 10px; font-size: 12px; }
+        .footer-links a:hover { color: #fff; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../index.html" class="back-link">&larr; Return to Central Hub</a>
+    <div class="card">
+        <h2 style="text-align:center; margin-top:0; color:#fff;">IMAGE RESIZER</h2>
+        <p style="text-align:center; font-size:12px; color:#a1a1aa; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px;">Fidelity Scaling Processing Engine</p>
+        
+        <input type="file" id="targetFile" accept="image/*" style="margin-bottom:20px;" onchange="loadMeta(this.files[0])">
+        
+        <div class="input-grid">
+            <div>
+                <label style="font-size:11px; color:#a1a1aa; display:block; margin-bottom:5px;">Width (px)</label>
+                <input type="number" id="targetWidth" placeholder="Width" oninput="matchRatio('width')">
+            </div>
+            <div>
+                <label style="font-size:11px; color:#a1a1aa; display:block; margin-bottom:5px;">Height (px)</label>
+                <input type="number" id="targetHeight" placeholder="Height" oninput="matchRatio('height')">
+            </div>
+        </div>
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="constrainRatio" checked style="accent-color:#d4af37;">
+            <label for="constrainRatio">Lock Baseline Aspect Proportions</label>
+        </div>
+
+        <button onclick="resizeAsset()">Scale & Export Asset Layout</button>
+
+        <!-- Privacy Node -->
+        <div class="privacy-box">
+            <p><strong>🔒 Local Processing Bounds:</strong> Scaling ratios and structural pixel maps compile purely inside volatile browser memory allocations. No permanent file tracking logs or layout profiles are created or distributed.</p>
+        </div>
+
+        <!-- Article Section -->
+        <div class="article-section">
+            <h3>Why Responsive Layouts Demand Diverse Image Dimensions</h3>
+            <p>Modern display standards cover an exponential range of responsive grid densities. Loading desktop-targeted structural files directly onto modern smartphone processors severely throttles data connections and degrades user experiences. Scaling down your high-resolution files beforehand provides perfect cross-platform optimization while avoiding memory exhaustion errors.</p>
+            
+            <h3>Proportional Preservation Realized Locally</h3>
+            <p>Retaining accurate mathematical aspect ratios prevents layout distorting or geometrical skewing anomalies. Processing these conversions inside local system arrays guarantees that tracking identifiers are safely decoupled from new file outputs automatically.</p>
+        </div>
+
+        <hr style="border:0; height:1px; background:linear-gradient(to right, transparent, rgba(212,175,55,0.2), transparent); margin:40px 0;">
+        <div class="footer-links" style="text-align:center;">
+            <a href="../about.html">About Us</a> |
+            <a href="../contact.html">Contact Us</a> |
+            <a href="../privacy.html">Privacy Policy</a> |
+            <a href="../terms.html">Terms & Conditions</a>
+        </div>
+        <p style="text-align:center; font-size:11px; color:#52525b; margin-top:15px;">&copy; 2026 Universal Converter Pro. All rights reserved.</p>
+    </div>
+</div>
+<script>
+    let baseImg = null;
+    let baseRatio = 1;
+    function loadMeta(file) {
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+            baseImg = new Image();
+            baseImg.onload = () => {
+                baseRatio = baseImg.width / baseImg.height;
+                document.getElementById('targetWidth').value = baseImg.width;
+                document.getElementById('targetHeight').value = baseImg.height;
+            };
+            baseImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    function matchRatio(changed) {
+        if(!baseImg || !document.getElementById('constrainRatio').checked) return;
+        const w = document.getElementById('targetWidth');
+        const h = document.getElementById('targetHeight');
+        if(changed === 'width') h.value = Math.round(w.value / baseRatio);
+        if(changed === 'height') w.value = Math.round(h.value * baseRatio);
+    }
+    function resizeAsset() {
+        if(!baseImg) return alert("Parse a primary layout image asset first.");
+        const canvas = document.createElement('canvas');
+        canvas.width = document.getElementById('targetWidth').value;
+        canvas.height = document.getElementById('targetHeight').value;
+        canvas.getContext('2d').drawImage(baseImg, 0, 0, canvas.width, canvas.height);
+        const dl = document.createElement('a');
+        dl.href = canvas.toDataURL('image/png'); dl.download = "scaled_dimension.png"; dl.click();
+    }
+</script>
+</body>
+</html>
